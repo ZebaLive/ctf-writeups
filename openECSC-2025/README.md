@@ -4,7 +4,7 @@ This repository contains my writeups for challenges from the **openECSC 2025** C
 
 ## About openECSC
 
-The open European Cyber Security Challenge (openECSC) is an annual cybersecurity competition that brings together talented individuals from across Europe to test their skills in various cybersecurity domains.
+openECSC is a cybersecurity competition open to everyone that invites enthusiasts to participate without any kind of limitations. Launched in 2022 as an extension of the European Cybersecurity Challenge, it aims to broaden participation beyond traditional age and nationality restrictions, featuring a series of jeopardy-style CTF competition rounds.
 
 ## Challenges Solved
 
