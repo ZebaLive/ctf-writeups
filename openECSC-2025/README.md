@@ -32,4 +32,5 @@ The open European Cyber Security Challenge (openECSC) is an annual cybersecurity
 
 - **Event**: openECSC 2025
 - **Challenges Solved**: 21
-- **Categories**: web, crypto, pwn, misc
+- **Points**: 3923
+- **Rank**: 14th place
