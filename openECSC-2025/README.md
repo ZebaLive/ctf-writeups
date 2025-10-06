@@ -22,11 +22,15 @@ The open European Cyber Security Challenge (openECSC) is an annual cybersecurity
 
 - **[cfp](pwn/cfp/writeup.md)** (Easy) - Buffer overflow with function pointer hijacking and ROP chain construction to bypass PIE and NX.
 
+### Steganography
+
+- **[calamansi](stego/calamansi/writeup.md)** (Medium) - APNG with hidden characters in transparent animation frames revealed through PNG chunk analysis and alpha channel bypass.
+
 ### Miscellaneous
 
 - **[oci](misc/oci/writeup.md)** (Medium) - Docker Registry API exploitation with flag hidden in custom HTTP headers
 - **[ruby-matcher](misc/ruby-matcher/writeup.md)** (Medium) - Regex oracle via single character code modification in Ruby
-- **[organization](pwn/organization/writeup.md)** (Medium) - Linux privilege escalation by bypassing wrapper scripts and monitoring xdotool automation.
+- **[organization](misc/organization/writeup.md)** (Medium) - Linux privilege escalation by bypassing wrapper scripts and monitoring xdotool automation.
 
 ## Competition Stats
 
