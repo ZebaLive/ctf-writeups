@@ -13,6 +13,7 @@ The open European Cyber Security Challenge (openECSC) is an annual cybersecurity
 - **[kittychat](web/kittychat/writeup.md)** (Medium) - Authentication bypass through undefined comparison enables XSS in username rendering.
 - **[eventhub](web/eventhub/writeup.md)** (Medium) - Exploiting insecure direct object references and lack of rate limiting in the event registration process.
 - **[kv-messenger](web/kv-messenger/writeup.md)** (Medium) - Exploiting a vulnerable deserialization process in the message queue service to execute arbitrary code.
+- **[polish-bar](web/polish-bar/writeup.md)** (Medium) - Prototype pollution vulnerability in Python Flask app allowing access to admin configuration via class variable manipulation.
 
 ### Cryptography
 
