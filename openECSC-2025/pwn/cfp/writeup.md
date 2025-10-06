@@ -20,7 +20,7 @@ This challenge exploits a classic buffer overflow vulnerability combined with fu
 
 ### Tools Used
 
-- Binary Ninja (with MCP integration) for reverse engineering
+- Binary Ninja for reverse engineering
 - pwntools for exploit development
 - Docker for local testing
 - Python 3
