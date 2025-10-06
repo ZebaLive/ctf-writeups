@@ -9,7 +9,7 @@ It contains **detailed writeups, exploit scripts, and technical notes** document
 
 | Year | Event | Writeups |
 |------|--------|-----------|
-| 2025 | [openECSC](https://openeCSC.eu/) | [openECSC-2025](./openECSC-2025/) |
+| 2025 | [openECSC](https://openec.sc/) | [openECSC-2025](./openECSC-2025/) |
 
 
 ---
