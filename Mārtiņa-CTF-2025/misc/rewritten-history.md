@@ -22,7 +22,7 @@ Project is licenced under GNU LGPLv3, so source code must be provided :)
 
 ### Artifacts
 
-- [server.zip](`server.zip`) - Contains a Python web server and Git repository
+- [`server.zip`](challenge/server.zip) - Contains a Python web server and Git repository
 
 ### Solution Overview
 
