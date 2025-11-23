@@ -9,7 +9,6 @@ Mārtiņa-CTF is a 48-hour team-based jeopardy-style Capture the Flag cybersecur
 - **Duration:** 48 hours of non-stop hacking
 - **Format:** Team-based jeopardy-style CTF
 - **Website:** [https://mctf.datoriki.org/2025/](https://mctf.datoriki.org/2025/)
-- **Community:** [Discord](https://discord.gg/pG6CjUnYkF)
 
 ## Challenges Solved
 
