@@ -17,6 +17,10 @@ Mārtiņa-CTF is a 48-hour team-based jeopardy-style Capture the Flag cybersecur
 
 - [Possibly secure 2003 web app](web/possibly-secure-2003-webapp.md) - 871 pts
 
+### Misc
+
+- [Rewritten History](misc/rewritten-history.md) - 256 pts
+
 ## Competition Stats
 
 - **Event**: Mārtiņa-CTF 2025

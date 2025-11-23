@@ -24,11 +24,6 @@ Hey! I started working at a new company, and accidentally broke their password d
 
 An abandoned 2003 social network with a simple login form protected by a WAF that bans suspicious IPs. Direct attacks on the login form triggered IP bans, but the `X-Forwarded-For` header was vulnerable to blind SQL injection. By crafting a reliable error-based oracle using SQLite's `ESCAPE ''` syntax, I enumerated database tables, columns, and users. The `users` table contained two accounts: `admin` (decoy) and `flag`. Extracting the `flag` user's password revealed the flag.
 
-### Tools Used
-
-- Python 3 with `requests` library
-- SQLite error-based blind injection technique
-
 ### Solution
 
 When I first opened the challenge, I was greeted with what looked like an ancient social network login page—very minimalist, just username and password fields on `index.php`.
