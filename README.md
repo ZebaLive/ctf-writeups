@@ -7,10 +7,10 @@ It contains **detailed writeups, exploit scripts, and technical notes** document
 
 ## Table of Contents
 
-| Year | Event                                          | Writeups                                |
-| :--- | :--------------------------------------------- | :-------------------------------------- |
-| 2025 | [openECSC](https://openec.sc/)                 | [openECSC-2025](./openECSC-2025/)       |
-| 2025 | [Mārtiņa-CTF](https://mctf.datoriki.org/2025/) | [Mārtiņa-CTF-2025](./Mārtiņa-CTF-2025/) |
+| Year | Event                                          | Writeups                                         |
+| :--- | :--------------------------------------------- | :----------------------------------------------- |
+| 2025 | [openECSC](https://openec.sc/)                 | [openECSC-2025](./openECSC-2025/README.md)       |
+| 2025 | [Mārtiņa-CTF](https://mctf.datoriki.org/2025/) | [Mārtiņa-CTF-2025](./Mārtiņa-CTF-2025/README.md) |
 
 ---
 
