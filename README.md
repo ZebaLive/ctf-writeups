@@ -1,16 +1,42 @@
 # CTF Writeups & Solutions
 
-This repository serves as my **personal archive of Capture The Flag (CTF)** challenges that I’ve solved across different competitions.  
+This repository serves as my **personal archive of Capture The Flag (CTF)** challenges that I've solved across different competitions.  
 It contains **detailed writeups, exploit scripts, and technical notes** documenting how each problem was approached, analyzed, and solved.
+
+🌐 **[Browse writeups online](https://zebalive.github.io/ctf-writeups/)**
 
 ---
 
-## Table of Contents
+## 2025 Competitions
 
-| Year | Event                                          | Writeups                                         |
-| :--- | :--------------------------------------------- | :----------------------------------------------- |
-| 2025 | [openECSC](https://openec.sc/)                 | [openECSC-2025](./openECSC-2025/README.md)       |
-| 2025 | [Mārtiņa-CTF](https://mctf.datoriki.org/2025/) | [Mārtiņa-CTF-2025](./Mārtiņa-CTF-2025/README.md) |
+### [openECSC 2025](https://openec.sc/)
+- **Challenges Solved**: 21
+- **Points**: 3923
+- **Rank**: 14th place
+- **Categories**: Web, Cryptography, Binary Exploitation, Steganography, Miscellaneous
+
+### [Mārtiņa-CTF 2025](https://mctf.datoriki.org/2025/)
+- **Team**: H4ck3r_4P3s
+- **Challenges Solved**: 44 (12 personal)
+- **Points**: 15213 (4751 personal)
+- **Rank**: 1st place (Remote)
+
+---
+
+## Local Development
+
+This site is built with [MkDocs](https://www.mkdocs.org/) and the [Material theme](https://squidfunk.github.io/mkdocs-material/).
+
+```bash
+# Install dependencies
+pip install mkdocs-material
+
+# Serve locally
+mkdocs serve
+
+# Build static site
+mkdocs build
+```
 
 ---
 

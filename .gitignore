@@ -1,0 +1,12 @@
+# Local build directory
+site/
+
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
