@@ -1,4 +1,6 @@
-# Mārtiņa-CTF Writeups
+# Mārtiņa-CTF 2025 Writeups
+
+My writeups for challenges from the **Mārtiņa-CTF 2025** competition.
 
 ## About
 

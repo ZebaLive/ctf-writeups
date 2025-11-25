@@ -2,9 +2,15 @@
 
 This repository contains my writeups for challenges from the **openECSC 2025** Capture The Flag competition.
 
-## About openECSC
+## About 
 
 openECSC is a cybersecurity competition open to everyone that invites enthusiasts to participate without any kind of limitations. Launched in 2022 as an extension of the European Cybersecurity Challenge, it aims to broaden participation beyond traditional age and nationality restrictions, featuring a series of jeopardy-style CTF competition rounds.
+
+**Event Details:**
+
+- **Duration:** September 29th 18:00:00 CEST - October 5th, 2025 23:59:59 CEST
+- **Format:** Individual jeopardy-style CTF with 91 challenges across 7 categories
+- **Website:** [https://openec.sc/](https://openec.sc/)
 
 ## Challenges Solved
 
