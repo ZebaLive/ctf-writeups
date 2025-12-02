@@ -6,6 +6,9 @@ site/
 venv/
 env/
 
+# direnv environment
+.direnv/
+
 # Python cache
 __pycache__/
 *.py[cod]
