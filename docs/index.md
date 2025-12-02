@@ -52,8 +52,11 @@ openECSC is a cybersecurity competition open to everyone that invites enthusiast
 
 ---
 
+## Disclaimer
+
+All materials are provided for **educational and research purposes only**.  
+Use responsibly and respect CTF competition rules.
+
 ## License
 
-This project is licensed under the terms of the MIT license.
-All materials here are for **educational and research purposes only**.  
-Use responsibly and respect competition rules.
+This project is licensed under the [MIT License](https://github.com/ZebaLive/ctf-writeups/blob/main/LICENSE).
