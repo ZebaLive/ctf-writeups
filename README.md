@@ -3,7 +3,7 @@
 This repository serves as my **personal archive of Capture The Flag (CTF)** challenges that I've solved across different competitions.  
 It contains **detailed writeups, exploit scripts, and technical notes** documenting how each problem was approached, analyzed, and solved.
 
-🌐 **[Browse writeups online](https://zebalive.github.io/ctf-writeups/)**
+🌐 **[Browse writeups online](https://ctf.zeba.dev)**
 
 ---
 
@@ -11,9 +11,9 @@ It contains **detailed writeups, exploit scripts, and technical notes** document
 
 | Competition          | Rank         | Challenges       | Points                | Links                                                                                          |
 | -------------------- | ------------ | ---------------- | --------------------- | ---------------------------------------------------------------------------------------------- |
-| **ECSC 2025**        | 30th         | 11 (4 personal)  | 1459                  | [Writeups](https://zebalive.github.io/ctf-writeups/2025/ecsc/) |
-| **Mārtiņa-CTF 2025** | 1st (Remote) | 44 (12 personal) | 15213 (4751 personal) | [Writeups](https://zebalive.github.io/ctf-writeups/2025/martina-ctf/)                          |
-| **openECSC 2025**    | 14th         | 21               | 3923                  | [Writeups](https://zebalive.github.io/ctf-writeups/2025/openecsc/)                             |
+| **ECSC 2025**        | 30th         | 11 (4 personal)  | 1459                  | [Writeups](https://ctf.zeba.dev/2025/ecsc/) |
+| **Mārtiņa-CTF 2025** | 1st (Remote) | 44 (12 personal) | 15213 (4751 personal) | [Writeups](https://ctf.zeba.dev/2025/martina-ctf/)                          |
+| **openECSC 2025**    | 14th         | 21               | 3923                  | [Writeups](https://ctf.zeba.dev/2025/openecsc/)                             |
 
 ---
 

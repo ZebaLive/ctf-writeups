@@ -1,6 +1,7 @@
 site_name: CTF Writeups
 site_description: Personal archive of CTF challenges and solutions
 site_author: zeba
+site_url: https://ctf.zeba.dev
 repo_url: https://github.com/ZebaLive/ctf-writeups
 repo_name: ZebaLive/ctf-writeups
 
