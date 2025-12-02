@@ -55,26 +55,27 @@ markdown_extensions:
 nav:
   - Home: index.md
   - 2025:
-      - openECSC:
-          - Overview: 2025/openecsc/README.md
-          - Web:
-              - kittychat: 2025/openecsc/web/kittychat/writeup.md
-              - eventhub: 2025/openecsc/web/eventhub/writeup.md
-              - kv-messenger: 2025/openecsc/web/kv-messenger/writeup.md
-              - polish-bar: 2025/openecsc/web/polish-bar/writeup.md
-          - Crypto:
-              - polite-email: 2025/openecsc/crypto/polite-email/writeup.md
-          - PWN:
-              - cfp: 2025/openecsc/pwn/cfp/writeup.md
-          - Stego:
-              - calamansi: 2025/openecsc/stego/calamansi/writeup.md
-          - Misc:
-              - oci: 2025/openecsc/misc/oci/writeup.md
-              - ruby-matcher: 2025/openecsc/misc/ruby-matcher/writeup.md
-              - organization: 2025/openecsc/misc/organization/writeup.md
-      - Mārtiņa-CTF:
-          - Overview: 2025/martina-ctf/README.md
-          - Web:
-              - Possibly secure 2003 webapp: 2025/martina-ctf/web/possibly-secure-2003-webapp.md
-          - Misc:
-              - Rewritten History: 2025/martina-ctf/misc/rewritten-history.md
+    - Mārtiņa-CTF:
+        - Overview: 2025/martina-ctf/README.md
+        - Web:
+            - Possibly secure 2003 webapp: 2025/martina-ctf/web/possibly-secure-2003-webapp.md
+        - Misc:
+            - Rewritten History: 2025/martina-ctf/misc/rewritten-history.md
+    - openECSC:
+        - Overview: 2025/openecsc/README.md
+        - Web:
+            - kittychat: 2025/openecsc/web/kittychat/writeup.md
+            - eventhub: 2025/openecsc/web/eventhub/writeup.md
+            - kv-messenger: 2025/openecsc/web/kv-messenger/writeup.md
+            - polish-bar: 2025/openecsc/web/polish-bar/writeup.md
+        - Crypto:
+            - polite-email: 2025/openecsc/crypto/polite-email/writeup.md
+        - PWN:
+            - cfp: 2025/openecsc/pwn/cfp/writeup.md
+        - Stego:
+            - calamansi: 2025/openecsc/stego/calamansi/writeup.md
+        - Misc:
+            - oci: 2025/openecsc/misc/oci/writeup.md
+            - ruby-matcher: 2025/openecsc/misc/ruby-matcher/writeup.md
+            - organization: 2025/openecsc/misc/organization/writeup.md
+     
