@@ -9,17 +9,11 @@ It contains **detailed writeups, exploit scripts, and technical notes** document
 
 ## 2025 Competitions
 
-### [Mārtiņa-CTF 2025](https://zebalive.github.io/ctf-writeups/2025/martina-ctf/)
-- **Team**: H4ck3r_4P3s
-- **Challenges Solved**: 44 (12 personal)
-- **Points**: 15213 (4751 personal)
-- **Rank**: 1st place (Remote)
-
-### [openECSC 2025](https://zebalive.github.io/ctf-writeups/2025/openecsc/)
-- **Challenges Solved**: 21
-- **Points**: 3923
-- **Rank**: 14th place
-- **Categories**: Web, Cryptography, Binary Exploitation, Steganography, Miscellaneous
+| Competition          | Rank         | Challenges       | Points                | Links                                                                                          |
+| -------------------- | ------------ | ---------------- | --------------------- | ---------------------------------------------------------------------------------------------- |
+| **ECSC 2025**        | 30th         | 11 (4 personal)  | 1459                  | [Writeups](https://zebalive.github.io/ctf-writeups/2025/ecsc/) |
+| **Mārtiņa-CTF 2025** | 1st (Remote) | 44 (12 personal) | 15213 (4751 personal) | [Writeups](https://zebalive.github.io/ctf-writeups/2025/martina-ctf/)                          |
+| **openECSC 2025**    | 14th         | 21               | 3923                  | [Writeups](https://zebalive.github.io/ctf-writeups/2025/openecsc/)                             |
 
 ---
 
@@ -27,9 +21,15 @@ It contains **detailed writeups, exploit scripts, and technical notes** document
 
 This site is built with [MkDocs](https://www.mkdocs.org/) and the [Material theme](https://squidfunk.github.io/mkdocs-material/).
 
+The project uses [asdf](https://asdf-vm.com/) for Python version management and [direnv](https://direnv.net/) for automatic environment activation. Dependencies are automatically installed when entering the directory.
+
 ```bash
-# Install dependencies
-pip install mkdocs-material
+# First time setup
+asdf plugin add python
+
+asdf install
+
+direnv allow
 
 # Serve locally
 mkdocs serve
@@ -42,5 +42,6 @@ mkdocs build
 
 ## License
 
+This project is licensed under the terms of the MIT license.
 All materials here are for **educational and research purposes only**.  
 Use responsibly and respect competition rules.
