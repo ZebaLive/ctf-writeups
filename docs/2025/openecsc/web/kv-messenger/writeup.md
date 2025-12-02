@@ -172,3 +172,7 @@ Full exploit: [exploit.py](exploit.py)
 
 **`openECSC{c21f_1nj3c710n_4nd_73_f02_7h3_w1n}`**
 
+---
+
+[← Back to openECSC 2025](../../README.md)
+

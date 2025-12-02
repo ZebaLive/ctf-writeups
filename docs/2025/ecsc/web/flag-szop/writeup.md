@@ -164,3 +164,7 @@ See [`solve/exploit.py`](solve/exploit.py) for the complete exploit script.
 ## Flag
 
 `ECSC{raccoon_shopping_cart_full_of_flags}`
+
+---
+
+[← Back to ECSC 2025](../../README.md)

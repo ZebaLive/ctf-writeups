@@ -284,3 +284,7 @@ The article explained this exact vulnerability! The URL was the rest of the flag
 ### Flag
 
 **`openECSC{Congrats!_https://jpcamara.com/2025/08/02/the-o-in-ruby-regex.html}`**
+
+---
+
+[← Back to openECSC 2025](../../README.md)

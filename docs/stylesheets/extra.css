@@ -1,0 +1,4 @@
+/* Hide "Table of Contents" heading while keeping auto-generated TOC */
+h2#table-of-contents {
+    display: none;
+}

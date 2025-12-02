@@ -177,3 +177,7 @@ if __name__ == '__main__':
 ### Flag
 
 **`flag{n1c3_j0b_but_n0w_d0_1t_w1th_csp}`**
+
+---
+
+[← Back to openECSC 2025](../../README.md)

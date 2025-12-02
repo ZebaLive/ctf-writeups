@@ -282,4 +282,4 @@ This challenge demonstrates several important web security principles:
 
 ---
 
-[← Back to Mārtiņa-CTF 2025](../README.md)
+[← Back to Mārtiņa-CTF 2025](../../README.md)

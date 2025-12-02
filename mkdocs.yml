@@ -54,35 +54,38 @@ markdown_extensions:
       permalink: true
 
 nav:
-  - Home: index.md
-  - 2025:
-    - Mārtiņa-CTF:
-        - Overview: 2025/martina-ctf/README.md
-        - Web:
-            - Possibly secure 2003 webapp: 2025/martina-ctf/web/possibly-secure-2003-webapp/writeup.md
-        - Misc:
-            - Rewritten History: 2025/martina-ctf/misc/rewritten-history/writeup.md
-    - ECSC:
-        - Overview: 2025/ecsc/README.md
-        - Web:
-            - Flag Szop: 2025/ecsc/web/flag-szop/writeup.md
-        - Misc:
-            - Blue Mouse: 2025/ecsc/misc/blue-mouse/writeup.md
-    - openECSC:
-        - Overview: 2025/openecsc/README.md
-        - Web:
-            - kittychat: 2025/openecsc/web/kittychat/writeup.md
-            - eventhub: 2025/openecsc/web/eventhub/writeup.md
-            - kv-messenger: 2025/openecsc/web/kv-messenger/writeup.md
-            - polish-bar: 2025/openecsc/web/polish-bar/writeup.md
-        - Crypto:
-            - polite-email: 2025/openecsc/crypto/polite-email/writeup.md
-        - PWN:
-            - cfp: 2025/openecsc/pwn/cfp/writeup.md
-        - Stego:
-            - calamansi: 2025/openecsc/stego/calamansi/writeup.md
-        - Misc:
-            - oci: 2025/openecsc/misc/oci/writeup.md
-            - ruby-matcher: 2025/openecsc/misc/ruby-matcher/writeup.md
-            - organization: 2025/openecsc/misc/organization/writeup.md
+  - Home: 
+        - Home: index.md
+        - Mārtiņa-CTF 2025: 2025/martina-ctf/README.md
+        - ECSC 2025: 2025/ecsc/README.md
+        - openECSC 2025: 2025/openecsc/README.md
+  - Mārtiņa-CTF 2025:
+      - Overview: 2025/martina-ctf/README.md
+      - Web:
+          - Possibly secure 2003 webapp: 2025/martina-ctf/web/possibly-secure-2003-webapp/writeup.md
+      - Misc:
+          - Rewritten History: 2025/martina-ctf/misc/rewritten-history/writeup.md
+  - ECSC 2025:
+      - Overview: 2025/ecsc/README.md
+      - Web:
+          - Flag Szop: 2025/ecsc/web/flag-szop/writeup.md
+      - Misc:
+          - Blue Mouse: 2025/ecsc/misc/blue-mouse/writeup.md
+  - openECSC 2025:
+      - Overview: 2025/openecsc/README.md
+      - Web:
+          - kittychat: 2025/openecsc/web/kittychat/writeup.md
+          - eventhub: 2025/openecsc/web/eventhub/writeup.md
+          - kv-messenger: 2025/openecsc/web/kv-messenger/writeup.md
+          - polish-bar: 2025/openecsc/web/polish-bar/writeup.md
+      - Crypto:
+          - polite-email: 2025/openecsc/crypto/polite-email/writeup.md
+      - Pwn:
+          - cfp: 2025/openecsc/pwn/cfp/writeup.md
+      - Stego:
+          - calamansi: 2025/openecsc/stego/calamansi/writeup.md
+      - Misc:
+          - oci: 2025/openecsc/misc/oci/writeup.md
+          - ruby-matcher: 2025/openecsc/misc/ruby-matcher/writeup.md
+          - organization: 2025/openecsc/misc/organization/writeup.md
      

@@ -159,3 +159,7 @@ curl -X POST "$TARGET/empty" \
 ### Flag
 
 `openECSC{gggrrrrrrr_ppyytthhonnn_ca53fbaf19bd}`
+
+---
+
+[← Back to openECSC 2025](../../README.md)

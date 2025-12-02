@@ -266,3 +266,7 @@ The challenge title was a perfect hint: "C supports function pointers" → The f
 ### Flag
 
 **`openECSC{v3ry_funct10n4l_v3ry_w0w}`**
+
+---
+
+[← Back to openECSC 2025](../../README.md)

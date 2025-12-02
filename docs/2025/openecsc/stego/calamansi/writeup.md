@@ -287,3 +287,7 @@ Running these two scripts produces `flag.png`, a 50-character strip that spells 
 ### Flag
 
 **`openECSC{B3f0r3-1t-w45-Y3ll0w-n0w-1t5-c4l4m4n51}`**
+
+---
+
+[← Back to openECSC 2025](../../README.md)

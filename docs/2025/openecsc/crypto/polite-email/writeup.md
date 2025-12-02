@@ -162,3 +162,7 @@ Running this script prints the required suffix `433dcdc3cdeec717cc41bea0e2030eaa
 ### Flag
 
 **`openECSC{when_politeness_fails_chinese_remainder_theorem_usually_works_23456789054}`**
+
+---
+
+[← Back to openECSC 2025](../../README.md)

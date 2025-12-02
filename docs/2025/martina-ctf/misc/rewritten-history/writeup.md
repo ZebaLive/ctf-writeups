@@ -159,4 +159,4 @@ The original commits remain in the reflog (usually for 30-90 days by default). I
 
 ---
 
-[← Back to Mārtiņa-CTF 2025](../README.md)
+[← Back to Mārtiņa-CTF 2025](../../README.md)

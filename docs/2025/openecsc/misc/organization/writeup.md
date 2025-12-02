@@ -215,3 +215,7 @@ The challenge title "organization" was a hint — the wrapper scripts created an
 **`openECSC{w3_sh0uld_st0p_us1ng_x0rg}`**
 
 The flag itself is a commentary on the security implications of using X.org for sensitive operations — X11's architecture makes it particularly vulnerable to snooping and automation attacks, as this challenge demonstrated!
+
+---
+
+[← Back to openECSC 2025](../../README.md)

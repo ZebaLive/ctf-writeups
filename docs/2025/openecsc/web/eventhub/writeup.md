@@ -163,3 +163,7 @@ Decoding: `admin=openECSC{i_hate_browser_differentials_🤮_202c574bc2f5}`
 ### Flag
 
 **Flag**: `openECSC{i_hate_browser_differentials_🤮_202c574bc2f5}`
+
+---
+
+[← Back to openECSC 2025](../../README.md)
