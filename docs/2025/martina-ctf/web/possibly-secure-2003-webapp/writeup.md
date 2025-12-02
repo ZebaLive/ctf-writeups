@@ -9,9 +9,7 @@
 ## Table of Contents
 
 - [Challenge Description](#challenge-description)
-- [Artifacts](#artifacts)
 - [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
 - [Solution](#solution)
 - [Solution Script](#solution-script)
 - [Flag](#flag)
