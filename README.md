@@ -42,6 +42,6 @@ mkdocs build
 
 ## License
 
-This project is licensed under the terms of the MIT license.
-All materials here are for **educational and research purposes only**.  
+This project is licensed under the terms of the MIT license. 
+All materials here are for **educational and research purposes only**. 
 Use responsibly and respect competition rules.
