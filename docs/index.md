@@ -11,9 +11,9 @@ Use the sidebar navigation to browse writeups by competition:
 
 ### 2025
 
-- **[Mārtiņa-CTF 2025](2025/martina-ctf/)** - 12 challenges solved, 1st place (Remote)
-- **[ECSC 2025](2025/ecsc/)** - 4 challenges solved, 30th place
-- **[openECSC 2025](2025/openecsc/)** - 21 challenges solved, 14th place
+- **[Mārtiņa-CTF 2025](2025/martina-ctf/README.md)** - 12 challenges solved, 1st place (Remote)
+- **[ECSC 2025](2025/ecsc/README.md)** - 4 challenges solved, 30th place
+- **[openECSC 2025](2025/openecsc/README.md)** - 21 challenges solved, 14th place
 
 ---
 

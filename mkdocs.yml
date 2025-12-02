@@ -28,6 +28,7 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
+    - navigation.indexes
     - navigation.top
     - search.suggest
     - search.highlight
@@ -53,6 +54,9 @@ markdown_extensions:
   - toc:
       permalink: true
 
+extra_css:
+  - stylesheets/extra.css
+
 nav:
   - Home: 
         - Home: index.md
@@ -60,19 +64,19 @@ nav:
         - ECSC 2025: 2025/ecsc/README.md
         - openECSC 2025: 2025/openecsc/README.md
   - Mārtiņa-CTF 2025:
-      - Overview: 2025/martina-ctf/README.md
+      - 2025/martina-ctf/README.md
       - Web:
           - Possibly secure 2003 webapp: 2025/martina-ctf/web/possibly-secure-2003-webapp/writeup.md
       - Misc:
           - Rewritten History: 2025/martina-ctf/misc/rewritten-history/writeup.md
   - ECSC 2025:
-      - Overview: 2025/ecsc/README.md
+      - 2025/ecsc/README.md
       - Web:
           - Flag Szop: 2025/ecsc/web/flag-szop/writeup.md
       - Misc:
           - Blue Mouse: 2025/ecsc/misc/blue-mouse/writeup.md
   - openECSC 2025:
-      - Overview: 2025/openecsc/README.md
+      - 2025/openecsc/README.md
       - Web:
           - kittychat: 2025/openecsc/web/kittychat/writeup.md
           - eventhub: 2025/openecsc/web/eventhub/writeup.md

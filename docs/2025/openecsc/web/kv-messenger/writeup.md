@@ -9,7 +9,6 @@
 ## Table of Contents
 
 - [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
 - [Solution](#solution)
 - [Solution Script](#solution-script)
 - [Flag](#flag)

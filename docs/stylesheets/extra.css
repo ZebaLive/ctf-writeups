@@ -1,4 +1,23 @@
-/* Hide "Table of Contents" heading while keeping auto-generated TOC */
-h2#table-of-contents {
-    display: none;
+/* Hide "Table of Contents" heading and the bullet list that follows it */
+article h2:has(#table-of-contents) {
+    display: none !important;
+}
+
+article h2:has(#table-of-contents) ~ ul:first-of-type {
+    display: none !important;
+}
+
+/* Fallback for browsers that don't support :has() */
+article h2#table-of-contents {
+    display: none !important;
+}
+
+article h2#table-of-contents + ul {
+    display: none !important;
+}
+
+/* More aggressive approach - hide the next ul after TOC heading */
+h2:has(#table-of-contents) + ul,
+h2#table-of-contents + ul {
+    display: none !important;
 }
