@@ -1,3 +1,8 @@
+---
+title: "Rewritten History - Mārtiņa-CTF 2025 Misc Challenge Writeup"
+description: "Mārtiņa-CTF 2025 Rewritten History challenge writeup. Exploit Git history manipulation and analyze commit history to recover hidden flag."
+---
+
 # Mārtiņa-CTF 2025
 
 ## Challenge: Rewritten History

@@ -1,3 +1,8 @@
+---
+title: "Possibly Secure 2003 Web App - Mārtiņa-CTF 2025 Writeup"
+description: "Mārtiņa-CTF 2025 web challenge writeup. Bypass WAF using X-Forwarded-For header and perform blind SQL injection on SQLite database to extract credentials."
+---
+
 # Mārtiņa-CTF 2025
 
 ## Challenge: Possibly secure 2003 web app

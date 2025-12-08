@@ -1,3 +1,8 @@
+---
+title: "Calamansi - openECSC 2025 Steganography Challenge Writeup"
+description: "openECSC 2025 Calamansi stego writeup. Extract and analyze 50 hidden APNG frames with transparent alpha channels to reveal flag characters."
+---
+
 # openECSC 2025
 
 ## Challenge: Calamansi

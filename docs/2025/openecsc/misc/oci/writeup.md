@@ -1,3 +1,8 @@
+---
+title: "OCI - openECSC 2025 Misc Challenge Writeup"
+description: "openECSC 2025 OCI misc challenge writeup. Enumerate Docker Registry API to discover secret tag and extract Base64-encoded flag from custom HTTP header."
+---
+
 # openECSC 2025
 
 ## Challenge: OCI

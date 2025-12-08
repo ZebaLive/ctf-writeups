@@ -1,5 +1,5 @@
 site_name: CTF Writeups
-site_description: Personal archive of CTF challenges and solutions
+site_description: Personal archive of CTF challenges and solutions featuring detailed writeups from ECSC, openECSC, Mārtiņa-CTF and other cybersecurity competitions. Learn web exploitation, cryptography, pwn, misc, and steganography techniques.
 site_author: zeba
 site_url: https://ctf.zeba.dev
 repo_url: https://github.com/ZebaLive/ctf-writeups
@@ -60,6 +60,19 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+  - meta
+
+plugins:
+  - search:
+      lang: en
+  - meta
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ZebaLive
+      name: GitHub Profile
+  generator: false
 
 extra_css:
   - stylesheets/extra.css

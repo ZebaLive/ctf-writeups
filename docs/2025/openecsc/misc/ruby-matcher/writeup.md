@@ -1,3 +1,8 @@
+---
+title: "Ruby Matcher - openECSC 2025 Misc Challenge Writeup"
+description: "openECSC 2025 Ruby Matcher writeup. Exploit Ruby regex /o modifier and string interpolation to create substring oracle that leaks flag character by character."
+---
+
 # openECSC 2025
 
 ## Challenge: ruby-matcher

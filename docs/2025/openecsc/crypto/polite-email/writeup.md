@@ -1,3 +1,8 @@
+---
+title: "Polite Email - openECSC 2025 Crypto Challenge Writeup"
+description: "openECSC 2025 Polite Email crypto writeup. Solve system of linear equations over GF(2) to craft email that satisfies five different CRC algorithm checks."
+---
+
 # openECSC 2025
 
 ## Challenge: Polite Email

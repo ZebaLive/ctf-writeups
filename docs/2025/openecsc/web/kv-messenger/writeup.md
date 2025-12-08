@@ -1,3 +1,8 @@
+---
+title: "KV-Messenger - openECSC 2025 Web Challenge Writeup"
+description: "openECSC 2025 KV-Messenger writeup. Bypass strict CSP with Trusted Types using CRLF injection to serve stored messages as JavaScript and exfiltrate flag."
+---
+
 # openECSC 2025
 
 ## Challenge: kv-messenger

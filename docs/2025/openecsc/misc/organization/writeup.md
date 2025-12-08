@@ -1,3 +1,8 @@
+---
+title: "Organization - openECSC 2025 Misc Challenge Writeup"
+description: "openECSC 2025 Organization writeup. Bypass wrapper scripts to reveal hidden processes and capture xdotool commands containing flag through rapid process monitoring."
+---
+
 # openECSC 2025
 
 ## Challenge: organization

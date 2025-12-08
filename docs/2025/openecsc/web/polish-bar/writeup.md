@@ -1,3 +1,8 @@
+---
+title: "Polish Bar - openECSC 2025 Web Challenge Writeup"
+description: "openECSC 2025 Polish Bar writeup. Exploit Flask prototype pollution vulnerability to access admin configuration and retrieve flag from preferred_beverage."
+---
+
 # openECSC 2025
 
 ## Challenge: polish-bar

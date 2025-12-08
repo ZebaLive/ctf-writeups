@@ -1,3 +1,8 @@
+---
+title: "openECSC 2025 CTF Writeups - 14th Place Individual Solutions"
+description: "Comprehensive writeups from openECSC 2025 CTF competition. 21 challenges solved including web exploitation, cryptography, pwn, steganography, and misc challenges. Learn XSS, CSP bypass, buffer overflow, and more."
+---
+
 # openECSC 2025 CTF Writeups
 
 This repository contains my writeups for challenges from the **openECSC 2025** Capture The Flag competition.

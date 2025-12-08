@@ -1,3 +1,8 @@
+---
+title: "Blue Mouse - ECSC 2025 Misc Challenge Writeup"
+description: "ECSC 2025 Blue Mouse challenge writeup. Extract and visualize Bluetooth HID mouse movements from PCAP to reconstruct flag drawn in Paint-like program."
+---
+
 # ECSC 2025
 
 ## Challenge: Blue Mouse

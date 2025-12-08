@@ -1,3 +1,8 @@
+---
+title: "Mārtiņa-CTF 2025 Writeups - 1st Place Remote Team Solutions"
+description: "Complete writeups from Mārtiņa-CTF 2025 48-hour competition. 1st place remote team solutions including blind SQL injection, WAF bypass, and Git history exploitation."
+---
+
 # Mārtiņa-CTF 2025 Writeups
 
 My writeups for challenges from the **Mārtiņa-CTF 2025** competition.

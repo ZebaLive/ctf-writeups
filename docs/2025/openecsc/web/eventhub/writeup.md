@@ -1,6 +1,11 @@
+---
+title: "EventHub - openECSC 2025 Web Challenge Writeup"
+description: "openECSC 2025 EventHub writeup. Exploit JavaScript protocol handler and CRLF injection to execute XSS and exfiltrate admin cookies containing the flag."
+---
+
 # openECSC 2025
 
-## Challenge: kittychat
+## Challenge: EventHub
 
 ## Tags: web
 

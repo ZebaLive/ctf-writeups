@@ -1,3 +1,8 @@
+---
+title: "CFP - openECSC 2025 Pwn Challenge Writeup"
+description: "openECSC 2025 CFP pwn challenge writeup. Exploit buffer overflow and function pointer hijacking with ROP chain to leak libc and call system('/bin/sh')."
+---
+
 # openECSC 2025
 
 ## Challenge: cfp

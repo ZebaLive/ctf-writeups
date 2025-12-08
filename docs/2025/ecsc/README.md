@@ -1,3 +1,8 @@
+---
+title: "ECSC 2025 CTF Writeups - European Cybersecurity Challenge Finals"
+description: "Detailed writeups from ECSC 2025 Finals in Warsaw, Poland. Solutions for web exploitation and misc challenges including PHP type juggling, SSRF, and Bluetooth HID analysis."
+---
+
 # ECSC 2025 Writeups
 
 My writeups for challenges from the **ECSC 2025** Finals competition.

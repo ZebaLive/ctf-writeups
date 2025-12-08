@@ -1,3 +1,8 @@
+---
+title: "KittyChat - openECSC 2025 Web Challenge Writeup"
+description: "openECSC 2025 KittyChat writeup. Exploit WebSocket authentication bypass and XSS vulnerability through username injection to steal admin credentials."
+---
+
 # openECSC 2025
 
 ## Challenge: kittychat
