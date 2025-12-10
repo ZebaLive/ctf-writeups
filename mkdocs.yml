@@ -7,6 +7,8 @@ repo_name: ZebaLive/ctf-writeups
 
 theme:
   name: material
+  logo: https://github.com/ZebaLive.png
+  favicon: https://github.com/ZebaLive.png
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
