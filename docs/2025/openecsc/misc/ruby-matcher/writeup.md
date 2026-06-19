@@ -1,36 +1,31 @@
 ---
 title: "Ruby Matcher - openECSC 2025 Misc Challenge Writeup"
 description: "openECSC 2025 Ruby Matcher writeup. Exploit Ruby regex /o modifier and string interpolation to create substring oracle that leaks flag character by character."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: misc
+difficulty: medium
+flag_format: "openECSC{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# ruby-matcher
 
-## Challenge: ruby-matcher
+**openECSC 2025** · Misc · Medium
 
-## Tags: misc
-
-## Difficulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 This challenge allows you to change exactly one character in Ruby code that uses regex matching. The vulnerability lies in the fact that you can change the backslash (`\`) before `#{@search}` in the regex `/\#{@search}/` to the character `o`, creating `/#{@search}/o)`. This achieves two things simultaneously: (1) removes the escape character, enabling Ruby string interpolation, and (2) adds the `/o` modifier which makes regex compilation happen only once and cache the pattern. By exploiting the `/o` modifier, the flag check reuses our controlled search pattern instead of a random letter, turning it into a substring oracle that leaks the flag character by character.
 
-### Tools Used
+## Tools Used
 
 - Python 3 with `socket` and `ssl` libraries
 - Ruby for local testing
 - ncat with SSL support for manual testing
 
-### Solution
+## Solution
 
-#### Initial Analysis
+### Initial Analysis
 
 When I first looked at the challenge, I was presented with this Ruby code:
 
@@ -67,9 +62,9 @@ The program flow:
 
 **Initial thought**: "How can changing one character help me leak the flag when my search string is escaped?"
 
-#### Finding the Pieces
+### Finding the Pieces
 
-##### Piece 1: The Escaped Interpolation
+#### Piece 1: The Escaped Interpolation
 
 The key line is:
 
@@ -81,7 +76,7 @@ Notice the `\#` — this **escapes** the `#` character, preventing Ruby's string
 
 **First roadblock**: Even if I control `@search`, it won't interpolate because of that backslash. ❌
 
-##### Piece 2: The One Character Change
+#### Piece 2: The One Character Change
 
 I can change **exactly one character** in the code. What if I change that backslash?
 
@@ -102,7 +97,7 @@ Let me test locally what happens if I change `\` to a space:
 
 This enables interpolation, but I still need the search pattern to be reused by the flag check...
 
-##### Piece 3: The /o Modifier — "Oh the humanity!"
+#### Piece 3: The /o Modifier — "Oh the humanity!"
 
 Then it hit me: **What if the character I'm changing can serve double duty?**
 
@@ -125,7 +120,7 @@ return !input.match?( /#{@search}/o)
 1. Removes the escape, enabling interpolation
 2. Adds the `/o` modifier after the closing `/`
 
-#### The /o Modifier Magic
+### The /o Modifier Magic
 
 Ruby's `/o` modifier means **"interpolate only once"**. The regex is compiled with the **first** value that gets interpolated, and then that compiled pattern is **cached and reused** for all subsequent matches!
 
@@ -146,7 +141,7 @@ puts m2.matches?("XYZ")     # false - STILL uses /ABC/o !!!
 
 The `/o` modifier means that `m2` **reuses the cached pattern from `m1`**, even though it was initialized with a different search string!
 
-#### The Exploit Chain
+### The Exploit Chain
 
 Here's how the exploit works:
 
@@ -168,7 +163,7 @@ Here's how the exploit works:
 
 **It's a substring oracle!** I can leak the flag character by character.
 
-#### Manual Verification
+### Manual Verification
 
 Let me test this manually:
 
@@ -194,7 +189,7 @@ Now I will test my flag: true   # No match! Not 'X'
 
 **Perfect!** The exploit works. Now I just need to automate it.
 
-#### Building the Exploit Script
+### Building the Exploit Script
 
 The Python script needs to:
 1. Connect via SSL
@@ -252,7 +247,7 @@ def exploit_character(host, port, known_flag, test_char):
 charset = string.ascii_lowercase + string.ascii_uppercase + string.digits + "_!@#$-./:="
 ```
 
-#### Running the Exploit
+### Running the Exploit
 
 ```bash
 $ python3 exploit_o_modifier.py
@@ -286,7 +281,7 @@ The article explained this exact vulnerability! The URL was the rest of the flag
 
 **Final flag**: `openECSC{Congrats!_https://jpcamara.com/2025/08/02/the-o-in-ruby-regex.html}`
 
-### Flag
+## Flag
 
 **`openECSC{Congrats!_https://jpcamara.com/2025/08/02/the-o-in-ruby-regex.html}`**
 

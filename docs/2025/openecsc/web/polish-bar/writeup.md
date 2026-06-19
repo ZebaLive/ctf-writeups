@@ -1,33 +1,28 @@
 ---
 title: "Polish Bar - openECSC 2025 Web Challenge Writeup"
 description: "openECSC 2025 Polish Bar writeup. Exploit Flask prototype pollution vulnerability to access admin configuration and retrieve flag from preferred_beverage."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: web
+difficulty: medium
+flag_format: "openECSC{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# polish-bar
 
-## Challenge: polish-bar
+**openECSC 2025** · Web · Medium
 
-## Tags: web
-
-## Difficulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 Polish Bar is a Flask web application with a configuration system vulnerable to prototype pollution. The app stores all user configurations in a class variable `_all_instances`, including the admin's config which contains the flag as `preferred_beverage`. Through a chain of vulnerabilities in the property management system, I can: (1) access the `_all_instances` list via the property getter, (2) replace my `alcohol_shelf` with the instances list, (3) exploit a bug in `empty_alcohol_shelf()` that lets me access the first element of any list assigned to `alcohol_shelf`, effectively giving me the admin's configuration object. The flag is then displayed directly in the template when accessing my profile. The exploit abuses Python's dynamic attribute setting combined with poor input validation in the configuration management logic.
 
-### Tools Used
+## Tools Used
 
 - **curl** - For HTTP requests and cookie handling
 - **Web browser** - For initial reconnaissance and understanding the UI
 
-### Solution
+## Solution
 
 When I first opened Polish Bar, I saw a beverage-themed web app that lets users manage their "alcohol shelf" and set preferred beverages. The UI hinted at some kind of configuration system - users could update their preferred beverage and manage drinks on their shelf.
 
@@ -58,7 +53,7 @@ def get_property(self, val):
 
 This method first checks attributes on `self.alcohol_shelf`, then falls back to `self`. Since Python classes can have class variables accessible through instances, this might let me access sensitive class-level data.
 
-#### Finding the Target
+### Finding the Target
 
 Looking at how the admin session is set up in `app.py`:
 
@@ -74,7 +69,7 @@ def admin_session_setup():
 
 **Aha!** The flag is stored as the admin's `preferred_beverage` in their `BeverageConfig`. Now I just need to find a way to access the admin's configuration.
 
-#### The Key Insight: _all_instances
+### The Key Insight: _all_instances
 
 Examining the class hierarchy, I noticed something interesting in `PreferenceConfig`:
 
@@ -89,7 +84,7 @@ class PreferenceConfig(AlcoholShelf):
 
 **Breakthrough moment**: Every `BeverageConfig` instance (including the admin's) gets added to this `_all_instances` class variable! If I can access this list through `get_property()`, I might be able to reach the admin's config.
 
-#### The Exploit Chain
+### The Exploit Chain
 
 Here's how my thinking progressed:
 
@@ -115,7 +110,7 @@ def empty_alcohol_shelf(self):
 
 **The final piece**: If my `alcohol_shelf` is a list (which doesn't have `_alcohol_shelf`), this method will execute `self.alcohol_shelf = self.alcohol_shelf[0]` - giving me the first element of the list!
 
-#### Exploitation
+### Exploitation
 
 First, I registered a user account to get a session:
 
@@ -161,7 +156,7 @@ curl -X POST "$TARGET/empty" \
 
 **BOOM!** The response showed my preferred beverage was now `openECSC{gggrrrrrrr_ppyytthhonnn_ca53fbaf19bd}` - the flag from the admin's configuration!
 
-### Flag
+## Flag
 
 `openECSC{gggrrrrrrr_ppyytthhonnn_ca53fbaf19bd}`
 

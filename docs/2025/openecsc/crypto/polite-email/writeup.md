@@ -1,25 +1,19 @@
 ---
 title: "Polite Email - openECSC 2025 Crypto Challenge Writeup"
 description: "openECSC 2025 Polite Email crypto writeup. Solve system of linear equations over GF(2) to craft email that satisfies five different CRC algorithm checks."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: crypto
+difficulty: medium
+flag_format: "openECSC{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# Polite Email
 
-## Challenge: Polite Email
+**openECSC 2025** · Crypto · Medium
 
-## Tags: crypto
-
-## Dificulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Solution Script](#solution-script)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 The service expects me to send the challenge author a polite e-mail that already contains their canned text. A response with the flag is only returned when:
 
@@ -28,12 +22,12 @@ The service expects me to send the challenge author a polite e-mail that already
 
 CRC computations are linear over GF(2), so I can treat the MAC requirement as a system of linear equations in the bits I control. By extending the polite mail with carefully chosen bytes I ensured that every CRC evaluates to zero, allowing me to submit a MAC of `0` and still pass all checks.
 
-### Tools Used
+## Tools Used
 
 1. `python3` with the `fastcrc` module (already packaged with the challenge)
 2. `ncat` for interacting with the remote service
 
-### Solution
+## Solution
 
 When I first looked at this challenge, I started by examining the `email.py` file to understand what exactly the service was checking. I immediately noticed the `ImpossibleMAC` function - it was requiring that a single MAC value matches the output of **five different CRC algorithms**: three 32-bit variants (`crc32.autosar`, `crc32.iscsi`, `crc32.iso_hdlc`) and two 64-bit ones (`crc64.go_iso`, `crc64.xz`). My first thought was "this seems impossible" - hence the function name!
 
@@ -60,7 +54,7 @@ Finally, I hex-encoded the complete message, submitted it to the service with MA
 # => returns the flag
 ```
 
-### Solution Script
+## Solution Script
 
 ```python
 from fastcrc import crc32, crc64
@@ -164,7 +158,7 @@ for module, name, _ in ALGS:
 
 Running this script prints the required suffix `433dcdc3cdeec717cc41bea0e2030eaaf2ca2307b3d0145ba694dd08`, which sets all CRC outputs to zero. Submitting the polite mail with this suffix and MAC `0` convinces the author that everything matches.
 
-### Flag
+## Flag
 
 **`openECSC{when_politeness_fails_chinese_remainder_theorem_usually_works_23456789054}`**
 

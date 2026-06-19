@@ -1,36 +1,30 @@
 ---
 title: "OCI - openECSC 2025 Misc Challenge Writeup"
 description: "openECSC 2025 OCI misc challenge writeup. Enumerate Docker Registry API to discover secret tag and extract Base64-encoded flag from custom HTTP header."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: misc
+difficulty: medium
+flag_format: "OpenECSC{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# OCI
 
-## Challenge: OCI
+**openECSC 2025** · Misc, Web · Medium
 
-## Tags: misc, web
-
-## Difficulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Solution Script](#solution-script)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 The challenge presents a Docker Registry API that masquerades as an official `nginx:alpine` repository. Through systematic enumeration of available tags, I discovered a hidden `secret` build alongside the expected `alpine` tag. While the additional layers in the secret build contained only decoy HTML files, the true flag was embedded as a custom HTTP header (`X-Injected-Secret`) in the blob response, encoded in Base64.
 
-### Tools Used
+## Tools Used
 
 - `curl` for Docker Registry API interaction and HTTP header inspection
 - `tar` and `gzip` for OCI layer extraction and analysis
 - `rg` (ripgrep) for efficient content searching within extracted layers
 - `python` (standard library) for Base64 decoding
 
-### Solution
+## Solution
 
 When approaching this challenge, I began by investigating the nature of the target service. The URL suggested I was dealing with some form of container registry, so I started by verifying that it implemented the Docker Registry API protocol. Querying the standard `/v2/` endpoint revealed the telltale JSON response `{"version":"1.1"}`, confirming I was indeed working with a legitimate Docker Registry implementation.
 
@@ -79,7 +73,7 @@ print(base64.b64decode(secret).decode())
 
 This revealed the flag: `OpenECSC{c3rt1f1ed-0C1_d3vel0per_2025_e6899b9e0204}`, cleverly hidden not in the container layers themselves, but in the HTTP headers used to deliver them.
 
-### Solution Script
+## Solution Script
 
 The complete solution can be automated using standard Python libraries:
 
@@ -111,7 +105,7 @@ except Exception as e:
     print(f"Error: {e}")
 ```
 
-### Flag
+## Flag
 
 **`OpenECSC{c3rt1f1ed-0C1_d3vel0per_2025_e6899b9e0204}`**
 

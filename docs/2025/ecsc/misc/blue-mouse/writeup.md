@@ -1,48 +1,41 @@
 ---
 title: "Blue Mouse - ECSC 2025 Misc Challenge Writeup"
 description: "ECSC 2025 Blue Mouse challenge writeup. Extract and visualize Bluetooth HID mouse movements from PCAP to reconstruct flag drawn in Paint-like program."
+ctf: "ECSC 2025"
+date: 2025-10-09
+category: misc
+points: TBD
+flag_format: "ECSC{...}"
+author: "zeba"
 ---
 
-# ECSC 2025
+# Blue Mouse
 
-## Challenge: Blue Mouse
+**ECSC 2025** · Misc
 
-## Category: Misc
-
-## Points: TBD
-
-## Table of Contents
-
-- [Challenge Description](#challenge-description)
-- [Artifacts](#artifacts)
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Flag](#flag)
-
-### Challenge Description
+## Challenge Description
 
 Someone drew the flag in a Paint-like program using a Bluetooth mouse, but with poor handwriting. Can you extract and visualize the mouse movements to reconstruct the drawing and read the flag?
 
-### Artifacts
+## Artifacts
 
 - [`challenge/mouse.pcap`](challenge/mouse.pcap) - Bluetooth HCI packet capture containing mouse movement data
 - [`solve/visualize_mouse.py`](solve/visualize_mouse.py) - Python script to extract and visualize the mouse movements
 
-### Solution Overview
+## Solution Overview
 
 This challenge involves analyzing a packet capture (PCAP) file containing Bluetooth Low Energy (BLE) mouse movements. The challenge description states that someone drew the flag in a Paint-like program using a Bluetooth mouse, but with poor handwriting. Our goal is to extract and visualize the mouse movements to reconstruct the drawing and read the flag.
 
-### Tools Used
+## Tools Used
 
 - **tshark/Wireshark** - For analyzing the packet capture file
 - **Python 3** - For parsing mouse data and visualization
 - **matplotlib** - For plotting the mouse movements
 - **struct** - For parsing binary data
 
-### Solution
+## Solution
 
-#### 1. Initial Analysis
+### 1. Initial Analysis
 
 First, I examined the provided file to understand what we're working with:
 
@@ -53,7 +46,7 @@ file mouse.pcap
 
 This confirmed it's a Bluetooth HCI (Host Controller Interface) capture file, which makes sense for a Bluetooth mouse.
 
-#### 2. Inspecting the Packet Capture
+### 2. Inspecting the Packet Capture
 
 Using tshark, I inspected the packets to understand their structure:
 
@@ -63,7 +56,7 @@ tshark -r mouse.pcap -c 20
 
 All packets were **ATT (Attribute Protocol) Handle Value Notifications** on handle 0x0028. This is the standard way Bluetooth LE HID (Human Interface Device) devices like mice send data to the host.
 
-#### 3. Extracting Mouse Data
+### 3. Extracting Mouse Data
 
 I extracted the actual payload data from all packets:
 
@@ -78,7 +71,7 @@ This gave me 6,879 packets of mouse data in hexadecimal format. Each packet foll
 - **Bytes 3-4**: Y movement delta (signed 16-bit integer, little-endian)
 - **Bytes 5-6**: Wheel/scroll data (not relevant for drawing)
 
-#### 4. Creating a Visualization Script
+### 4. Creating a Visualization Script
 
 The key insight is that when drawing in a Paint-like program, you hold down the left mouse button while moving to draw lines. So I needed to:
 
@@ -151,7 +144,7 @@ plt.savefig('mouse_drawing.png', dpi=200, bbox_inches='tight')
 print("Drawing saved to mouse_drawing.png")
 ```
 
-#### 5. Key Decisions
+### 5. Key Decisions
 
 - **Signed integers**: Used `struct.unpack('<h', ...)` for signed 16-bit little-endian integers because mouse movements can be in any direction (positive or negative)
 - **Cumulative positioning**: Added each delta to running totals to get absolute screen positions
@@ -159,7 +152,7 @@ print("Drawing saved to mouse_drawing.png")
 - **Y-axis inversion**: Screen coordinates typically have Y increasing downward, so I inverted the axis
 - **Stretched visualization**: Initially the Y-axis was compressed making text unreadable. Removing `ax.set_aspect('equal')` allowed matplotlib to stretch the Y-axis proportionally to the figure size, making the handwritten text legible
 
-#### 6. Reading the Flag
+### 6. Reading the Flag
 
 After running the script and generating the visualization with proper Y-axis stretching, the mouse drawing clearly showed the handwritten text (albeit with poor handwriting as mentioned in the challenge description):
 
@@ -167,7 +160,7 @@ After running the script and generating the visualization with proper Y-axis str
 
 The flag is: `ECSC{ALICE_CANT_WRITE}`
 
-### Flag
+## Flag
 
 `ECSC{ALICE_CANT_WRITE}`
 

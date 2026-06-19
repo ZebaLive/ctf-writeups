@@ -1,41 +1,35 @@
 ---
 title: "Calamansi - openECSC 2025 Steganography Challenge Writeup"
 description: "openECSC 2025 Calamansi stego writeup. Extract and analyze 50 hidden APNG frames with transparent alpha channels to reveal flag characters."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: stego
+difficulty: medium
+flag_format: "openECSC{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# Calamansi
 
-## Challenge: Calamansi
+**openECSC 2025** · Stego · Medium
 
-## Tags: stego
-
-## Difficulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Solution Scripts](#solution-scripts)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 The provided [`calamansi.png`](./calamansi.png) appears to be a simple flat calamansi-yellow square, but it's actually an APNG (animated PNG) with 50 hidden frames. Each frame contains letter-shaped differences in the RGB channels that are invisible due to transparent alpha channels. By parsing the PNG chunk structure, extracting and decompressing each frame's raw pixel data, converting non-background pixels to white, and concatenating the resulting character images, the complete flag is revealed as a horizontal strip.
 
-### Tools Used
+## Tools Used
 
 - Python 3 standard library (`struct`, `zlib`, `itertools`)
 - Pillow (PIL) for image processing and manipulation
 - `file` command for initial format verification
 
-### Solution
+## Solution
 
 When I first looked at this challenge, I was immediately suspicious. **The image looked like a simple flat yellow square, but the file size was 22 KB.**
 
 **First thought**: *"Why would a solid color square be 22 KB? That's way too big for what should be a tiny PNG."*
 
-#### Initial Investigation
+### Initial Investigation
 
 I ran a quick check on the file format:
 
@@ -53,7 +47,7 @@ identify calamansi.png
 
 Still no indication of animation. But that file size kept bothering me. Let me try a more detailed check:
 
-```bash  
+```bash
 pngcheck -v calamansi.png
 ```
 
@@ -64,7 +58,7 @@ pngcheck -v calamansi.png
 
 **Key insight**: *"The file is an APNG with 50 frames. Each frame might contain part of the flag, but why can't I see the animation?"*
 
-#### Understanding the APNG Structure
+### Understanding the APNG Structure
 
 I decided to parse the PNG manually to understand its structure. APNGs work by having:
 - An `IDAT` chunk for the default/first frame
@@ -106,7 +100,7 @@ print(f"Found {len(frames)} animation frames")
 
 **Result**: 50 frames extracted! But when I looked at the first few frames, I noticed something strange.
 
-#### The Hidden Characters
+### The Hidden Characters
 
 Each decompressed frame contained raw RGBA pixel data. The PNG format stores pixels row by row, with each row having a filter byte followed by the actual pixel data.
 
@@ -141,7 +135,7 @@ for i, raw in enumerate(frames[:3], start=1):
 
 **This explained everything!** The animation frames contained letters, but they were invisible because the alpha channel made them transparent.
 
-#### Revealing the Characters
+### Revealing the Characters
 
 *"If the frames contain letter-shaped RGB differences but they're invisible due to alpha, I just need to make them visible by ignoring the alpha channel."*
 
@@ -167,7 +161,7 @@ for i, raw in enumerate(frames, start=1):
 
 **Success!** Each `revealed_XX.png` file now showed a single character clearly visible as white text on a black background.
 
-#### Assembling the Flag
+### Assembling the Flag
 
 After extracting all 50 character images, I needed to combine them into the final flag. 
 
@@ -201,7 +195,7 @@ Opening `flag.png` revealed the complete flag as a horizontal strip of 50 charac
 
 ![flag](./flag.png)
 
-### Solution Scripts
+## Solution Scripts
 
 **Extract and reveal characters per frame**:
 
@@ -289,7 +283,7 @@ if __name__ == "__main__":
 
 Running these two scripts produces `flag.png`, a 50-character strip that spells out the answer.
 
-### Flag
+## Flag
 
 **`openECSC{B3f0r3-1t-w45-Y3ll0w-n0w-1t5-c4l4m4n51}`**
 

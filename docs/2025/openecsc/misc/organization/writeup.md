@@ -1,41 +1,36 @@
 ---
 title: "Organization - openECSC 2025 Misc Challenge Writeup"
 description: "openECSC 2025 Organization writeup. Bypass wrapper scripts to reveal hidden processes and capture xdotool commands containing flag through rapid process monitoring."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: misc
+difficulty: medium
+flag_format: "openECSC{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# organization
 
-## Challenge: organization
+**openECSC 2025** · Misc · Medium
 
-## Tags: misc
-
-## Difficulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 This challenge presents a classic Linux privilege escalation scenario where wrapper scripts filter process listings to hide sensitive information. By discovering the actual `ps` binary at `/bin/ps` (bypassing the wrapper at `/usr/local/bin/ps`), I revealed hidden processes including an Xvfb X server running on display :99 and a `sys_maintenance` script executing as root. Through rapid process monitoring, I captured `xdotool` commands that were being used to automate password entry into a GUI application, revealing the flag directly in the command arguments.
 
-### Tools Used
+## Tools Used
 
 - SSH with ncat SSL proxy for remote access
 - Standard Unix utilities (`ps`, `find`, `grep`, `xdotool`, `xwd`)
 - Bash for process monitoring and rapid polling
 - Python 3 for testing and automation
 
-### Solution
+## Solution
 
 When I first connected to the challenge system, I was greeted with the description: *"Average linux privesc, pls get flag kthxbye."* The title "organization" and the prompt suggested this would involve typical privilege escalation techniques.
 
 **Initial thought**: "This is probably a standard Linux privesc box. Let me start with the usual enumeration."
 
-#### Initial Reconnaissance
+### Initial Reconnaissance
 
 After SSH'ing into the system as user `user` (password: `user`), I began standard enumeration:
 
@@ -53,7 +48,7 @@ sudo -l
 
 **No sudo access** → Need to find another vector.
 
-#### The First Clue: Hidden Processes
+### The First Clue: Hidden Processes
 
 Running `ps aux` showed a fairly standard process list:
 
@@ -68,7 +63,7 @@ ps aux
 - An Xvfb virtual X server on display :99
 - But something felt... filtered
 
-#### Discovering the Wrapper Scripts
+### Discovering the Wrapper Scripts
 
 Checking the PATH revealed something suspicious:
 
@@ -113,7 +108,7 @@ The wrapper is **filtering out** processes matching:
 
 The filtering specifically mentions `xdotool` — a tool for automating X11 GUI interactions!
 
-#### Bypassing the Wrapper
+### Bypassing the Wrapper
 
 **Simple bypass**: Use the real `ps` binary directly:
 
@@ -134,7 +129,7 @@ root        449  4.0  0.0  39804 21460 ?        Sl   20:47   0:00 python3 /opt/p
 - The `sys_maintenance` script is probably automating something with xdotool
 - Everything's running on the virtual display :99
 
-#### Investigating the X Server
+### Investigating the X Server
 
 I tried various approaches to extract information from the X server:
 
@@ -160,7 +155,7 @@ xwd -root -out /tmp/screenshot.xwd
 
 But without tools to analyze the XWD file (no `convert`, `strings`, etc.), extracting the flag from the screenshot wasn't feasible.
 
-#### The Breakthrough: Real-Time Process Monitoring
+### The Breakthrough: Real-Time Process Monitoring
 
 Then I had a realization: **If sys_maintenance is using xdotool to automate something, maybe I can catch it in action!**
 
@@ -201,7 +196,7 @@ root       2016  0.0  0.0   8112  3628 ?        S    20:59   0:00 xdotool type o
 
 The `sys_maintenance` script was using `xdotool type` to automatically enter the flag into the password application, and I caught it mid-execution!
 
-#### Why This Worked
+### Why This Worked
 
 The exploit chain relied on several key insights:
 
@@ -215,7 +210,7 @@ The challenge title "organization" was a hint — the wrapper scripts created an
 
 **Key lesson**: When process listings seem incomplete or suspicious, check for wrapper scripts in PATH and use direct binary paths to bypass filtering.
 
-### Flag
+## Flag
 
 **`openECSC{w3_sh0uld_st0p_us1ng_x0rg}`**
 

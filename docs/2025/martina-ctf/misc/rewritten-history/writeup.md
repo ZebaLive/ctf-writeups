@@ -1,43 +1,37 @@
 ---
 title: "Rewritten History - Mārtiņa-CTF 2025 Misc Challenge Writeup"
 description: "Mārtiņa-CTF 2025 Rewritten History challenge writeup. Exploit Git history manipulation and analyze commit history to recover hidden flag."
+ctf: "Mārtiņa-CTF 2025"
+date: "2025"
+category: misc
+points: 256
+flag_format: "MCTF25{...}"
+author: "zeba"
 ---
 
-# Mārtiņa-CTF 2025
+# Rewritten History
 
-## Challenge: Rewritten History
+**Mārtiņa-CTF 2025** · Misc · 256 pts
 
-## Category: Misc
-
-## Points: 256
-
-## Table of Contents
-
-- [Challenge Description](#challenge-description)
-- [Artifacts](#artifacts)
-- [Solution Overview](#solution-overview)
-- [Solution](#solution)
-- [Flag](#flag)
-
-### Challenge Description
+## Challenge Description
 
 You can get the flag for free on this challenge!
 
 Project is licenced under GNU LGPLv3, so source code must be provided :)
 
-### Artifacts
+## Artifacts
 
 - [`server.zip`](challenge/server.zip) - Contains a Python web server and Git repository
 
-### Solution Overview
+## Solution Overview
 
 A simple Python web server with a `/api/flag` endpoint that serves the flag from an environment variable. The twist: the flag was hardcoded in an old Git commit that was later removed through history rewriting. Using `git reflog`, I recovered the original commit containing XOR-encoded flag data, decoded it, and extracted the flag.
 
-### Solution
+## Solution
 
 When I extracted the challenge files, I found a `server.zip` archive. After unzipping it, I saw a directory structure with a Git repository.
 
-#### Initial Exploration
+### Initial Exploration
 
 First, I extracted the archive and looked at what we had:
 
@@ -84,7 +78,7 @@ So there's a `/api/flag` endpoint that returns the flag from an environment vari
 
 **Key insight**: The challenge says "you can get the flag for free" and mentions that source code must be provided. Plus the name is "Rewritten History"... this has to mean the flag was in the Git history somewhere but got removed.
 
-#### Checking the Git Log
+### Checking the Git Log
 
 Let's see what commits are in the repository:
 
@@ -94,7 +88,7 @@ Let's see what commits are in the repository:
 
 **This confirmed my suspicion**: The commit message says "added flag" but the current version doesn't have a hardcoded flag. This means the history was rewritten!
 
-#### The Breakthrough: Git Reflog
+### The Breakthrough: Git Reflog
 
 In Git, even when you rewrite history (through rebasing, amending, or resetting), the original commits aren't immediately deleted. They remain accessible through the **reflog** (reference log).
 
@@ -117,7 +111,7 @@ This shows exactly what happened:
 
 The original commit `b979fe3` is still accessible through the reflog!
 
-#### Extracting the Flag
+### Extracting the Flag
 
 Now I just needed to look at what was in that original commit:
 
@@ -143,11 +137,11 @@ All I had to do was run the decoding logic:
 
 **Flag captured!**
 
-### Flag
+## Flag
 
 **Flag**: `MCTF25{git_kn0ws_4ll}`
 
-### Key Takeaways
+## Key Takeaways
 
 This challenge teaches an important security lesson: **Git never truly forgets**. Even when history is rewritten through:
 

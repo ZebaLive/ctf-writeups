@@ -1,33 +1,27 @@
 ---
 title: "Possibly Secure 2003 Web App - Mārtiņa-CTF 2025 Writeup"
 description: "Mārtiņa-CTF 2025 web challenge writeup. Bypass WAF using X-Forwarded-For header and perform blind SQL injection on SQLite database to extract credentials."
+ctf: "Mārtiņa-CTF 2025"
+date: "2025"
+category: web
+points: 871
+flag_format: "MCTF25{...}"
+author: "zeba"
 ---
 
-# Mārtiņa-CTF 2025
+# Possibly secure 2003 web app
 
-## Challenge: Possibly secure 2003 web app
+**Mārtiņa-CTF 2025** · (im)Possible Security · 871 pts
 
-## Category: (im)Possible Security
-
-## Points: 871
-
-## Table of Contents
-
-- [Challenge Description](#challenge-description)
-- [Solution Overview](#solution-overview)
-- [Solution](#solution)
-- [Solution Script](#solution-script)
-- [Flag](#flag)
-
-### Challenge Description
+## Challenge Description
 
 Hey! I started working at a new company, and accidentally broke their password distributer. Can you figure out how to recover it?
 
-### Solution Overview
+## Solution Overview
 
 An abandoned 2003 social network with a simple login form protected by a WAF that bans suspicious IPs. Direct attacks on the login form triggered IP bans, but the `X-Forwarded-For` header was vulnerable to blind SQL injection. By crafting a reliable error-based oracle using SQLite's `ESCAPE ''` syntax, I enumerated database tables, columns, and users. The `users` table contained two accounts: `admin` (decoy) and `flag`. Extracting the `flag` user's password revealed the flag.
 
-### Solution
+## Solution
 
 When I first opened the challenge, I was greeted with what looked like an ancient social network login page—very minimalist, just username and password fields on `index.php`.
 
@@ -35,7 +29,7 @@ When I first opened the challenge, I was greeted with what looked like an ancien
 
 **First thought from the task description**: "Reported blind SQLi—we're definitely looking for SQL injection here."
 
-#### Initial Recon: Attacking the Form
+### Initial Recon: Attacking the Form
 
 My natural first instinct was to try injecting directly into the login form. I started with classic payloads:
 
@@ -47,7 +41,7 @@ My natural first instinct was to try injecting directly into the login form. I s
 
 I spent some time trying to find clever WAF bypasses, testing various encoding tricks and SQL syntax variations. Everything either got sanitized or triggered the ban.
 
-#### The Breakthrough: X-Forwarded-For Header
+### The Breakthrough: X-Forwarded-For Header
 
 After exhausting direct form attacks, I started thinking about other injection vectors. What if the application logs requests? What if it tracks IPs for the ban system?
 
@@ -55,7 +49,7 @@ After exhausting direct form attacks, I started thinking about other injection v
 
 I sent a simple request with `X-Forwarded-For: 1'` and compared it to a normal request.
 
-**Bingo-l "/home/zeba/Projects/ctf-writeups/Mārtiņa-CTF-2025/web/possibly-secure-2003-webapp.md"* The response length changed:
+**Bingo!** The response length changed:
 
 - Normal request: ≈753 bytes
 - With single quote: ≈712 bytes
@@ -64,7 +58,7 @@ I sent a simple request with `X-Forwarded-For: 1'` and compared it to a normal r
 
 This was the tell—the header was being interpolated into a SQL query without proper escaping! The single quote was causing a SQL syntax error, which changed the response.
 
-#### Building the Oracle
+### Building the Oracle
 
 Now I needed a way to reliably distinguish between TRUE and FALSE conditions. I couldn't just use boolean-based injection because I needed something that would cause an error **only when a condition is true**.
 
@@ -82,7 +76,7 @@ How this works:
 
 I tested this with a simple true condition and confirmed it worked. Time to build the extraction script!
 
-#### The Extraction Script
+### The Extraction Script
 
 I wrote a Python script with two core functions:
 
@@ -118,7 +112,7 @@ def extract(sql, max_len=64, charset=string.printable):
 
 The beauty of this approach is that I could reuse the same script for everything—just by changing the SQL query passed to `extract()`.
 
-#### Step 1: Enumerating Tables
+### Step 1: Enumerating Tables
 
 First, I needed to know what tables existed in the database. In SQLite, you query `sqlite_master`:
 
@@ -138,7 +132,7 @@ for i in range(10):  # Try first 10 tables
 
 ![Tables enumeration](images/tables.png)
 
-#### Step 2: Enumerating Columns
+### Step 2: Enumerating Columns
 
 Now I knew there was a `users` table. What columns does it have?
 
@@ -160,7 +154,7 @@ Perfect! Exactly what I needed.
 
 ![Users table structure](images/users_table.png)
 
-#### Step 3: Enumerating Users
+### Step 3: Enumerating Users
 
 Time to see what users exist:
 
@@ -179,7 +173,7 @@ for i in range(10):
 
 **That second username got my attention immediately.** A user literally named `flag`? That's almost certainly where the flag is!
 
-#### Step 4: Extracting Passwords
+### Step 4: Extracting Passwords
 
 First, I tried getting the admin password out of curiosity:
 
@@ -205,7 +199,7 @@ As the script ran, character by character, I watched the flag materialize on my 
 
 **Flag captured!**
 
-### Solution Script
+## Solution Script
 
 ```python
 import requests, string
@@ -267,11 +261,11 @@ print(f"\n[*] Flag password: {flag_pass}")
 print(f"\n[!] FLAG: {flag_pass}")
 ```
 
-### Flag
+## Flag
 
 **Flag**: `MCTF25{on3_y34r_b4_fb_but_n0_C1GAR}`
 
-### Key Takeaways
+## Key Takeaways
 
 This challenge demonstrates several important web security principles:
 

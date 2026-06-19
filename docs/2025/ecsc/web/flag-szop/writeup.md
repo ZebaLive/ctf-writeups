@@ -1,25 +1,17 @@
 ---
 title: "Flag Szop - ECSC 2025 Web Challenge Writeup"
 description: "Detailed writeup of Flag Szop web challenge from ECSC 2025. Exploit PHP type juggling vulnerability, bypass SSRF protection, and upload PHP webshell to capture the flag."
+ctf: "ECSC 2025"
+date: 2025-10-09
+category: web
+difficulty: medium
+flag_format: "ECSC{...}"
+author: "zeba"
 ---
 
-# ECSC 2025
+# Flag Szop
 
-## Challenge: Flag Szop
-
-## Tags: web
-
-## Difficulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Initial Reconnaissance](#initial-reconnaissance)
-- [Vulnerability Analysis](#vulnerability-analysis)
-- [Exploitation Journey](#exploitation-journey)
-- [Full Solution Script](#full-solution-script)
-- [Flag](#flag)
+**ECSC 2025** · Web · Medium
 
 ## Solution Overview
 

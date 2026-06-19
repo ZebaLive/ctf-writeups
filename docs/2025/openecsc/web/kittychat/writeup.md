@@ -1,37 +1,31 @@
 ---
 title: "KittyChat - openECSC 2025 Web Challenge Writeup"
 description: "openECSC 2025 KittyChat writeup. Exploit WebSocket authentication bypass and XSS vulnerability through username injection to steal admin credentials."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: web
+difficulty: medium
+flag_format: "flag{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# kittychat
 
-## Challenge: kittychat
+**openECSC 2025** · Web · Medium
 
-## Tags: web
-
-## Difficulty: Medium
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Solution Script](#solution-script)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 KittyChat is a web chat application vulnerable to XSS through username injection. The key insight is that the WebSocket LOGIN handler has a critical authentication bypass: when `data.key` is omitted (undefined) and the account doesn't exist, the check `accounts[username]?.userkey == data.key` evaluates to `undefined == undefined`, which is TRUE. This allows me to "authenticate" without credentials and bypass the username regex validation that normally blocks HTML characters. I exploit this by: (1) sending a LOGIN message with an HTML-laden username and no key, (2) triggering the admin bot who visits the chat, (3) our malicious username gets rendered via `createContextualFragment()` causing XSS to fire, (4) the XSS steals the admin's notes containing the flag. The flag hints at the intended mitigation: Content Security Policy.
 
-### Tools Used
+## Tools Used
 
 - Python 3 with `websockets` library
 - Browser DevTools for debugging
 - [webhook.site](https://webhook.site) for flag exfiltration
 
-### Solution
+## Solution
 
-#### Initial Analysis
+### Initial Analysis
 
 When I first examined the application, I found a chat system with WebSocket communication. The client-side code in `chat.js` had an obvious XSS vulnerability in the `updateUsers()` function:
 
@@ -46,7 +40,7 @@ function updateUsers(usersList) {
 
 The `createContextualFragment()` method parses HTML, so if any username contains HTML tags with JavaScript, it will execute. Perfect! Now I just need to inject an XSS payload into a username.
 
-#### The Roadblock: Username Validation
+### The Roadblock: Username Validation
 
 Looking at the server-side WebSocket handler (`ws.js`), I saw that anonymous users' usernames are validated:
 
@@ -73,7 +67,7 @@ ws.send(json.dumps({"type": "START", "username": "kitten_1<img>"}))
 
 Dead end. Or was it?
 
-#### The Breakthrough: Authentication Bypass
+### The Breakthrough: Authentication Bypass
 
 After hitting this wall, I carefully re-examined ALL the code paths. The key was noticing that `setUsername()` is called with `anonymous=false` from the LOGIN handler, which would SKIP the regex check! But how do I trigger LOGIN without valid credentials?
 
@@ -96,7 +90,7 @@ Wait. What happens if I send a LOGIN message for a username that DOESN'T exist, 
 
 JavaScript's loose equality strikes again! The check passes, `ws.verified` gets set to true, and `setUsername()` is called with our arbitrary username WITHOUT validation!
 
-#### Exploitation
+### Exploitation
 
 With this bypass, the attack becomes straightforward:
 
@@ -135,7 +129,7 @@ When the admin bot visits the chat:
 
 Flag received: `flag{n1c3_j0b_but_n0w_d0_1t_w1th_csp}`
 
-### Solution Script
+## Solution Script
 
 ```python
 #!/usr/bin/env python3
@@ -179,7 +173,7 @@ if __name__ == '__main__':
     asyncio.run(exploit(sys.argv[1]))
 ```
 
-### Flag
+## Flag
 
 **`flag{n1c3_j0b_but_n0w_d0_1t_w1th_csp}`**
 

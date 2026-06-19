@@ -1,42 +1,36 @@
 ---
 title: "CFP - openECSC 2025 Pwn Challenge Writeup"
 description: "openECSC 2025 CFP pwn challenge writeup. Exploit buffer overflow and function pointer hijacking with ROP chain to leak libc and call system('/bin/sh')."
+ctf: "openECSC 2025"
+date: 2025-10-05
+category: pwn
+difficulty: easy
+flag_format: "openECSC{...}"
+author: "zeba"
 ---
 
-# openECSC 2025
+# cfp
 
-## Challenge: cfp
+**openECSC 2025** · Pwn · Easy
 
-## Tags: pwn
-
-## Difficulty: Easy
-
-## Table of Contents
-
-- [Solution Overview](#solution-overview)
-- [Tools Used](#tools-used)
-- [Solution](#solution)
-- [Solution Script](#solution-script)
-- [Flag](#flag)
-
-### Solution Overview
+## Solution Overview
 
 This challenge exploits a classic buffer overflow vulnerability combined with function pointer hijacking. The program reads 256 bytes into a 100-byte buffer, allowing us to overwrite a function pointer stored on the stack. With PIE and NX enabled, the solution requires a three-stage attack: (1) leak the PIE base by overflowing without null terminators to leak the function pointer address, (2) build a ROP chain to call `puts(puts_got)` to leak libc addresses and return to main, (3) call `user_func()` to exit the loop cleanly and execute a final ROP chain that calls `system("/bin/sh")`. The challenge title hints at the vulnerability—C's function pointers become dangerous when stack-based and user-controlled.
 
-### Tools Used
+## Tools Used
 
 - Binary Ninja for reverse engineering
 - pwntools for exploit development
 - Docker for local testing
 - Python 3
 
-### Solution
+## Solution
 
 When I first loaded the binary into Binary Ninja, I saw the challenge description: *"Wow! Did you know C supports function pointers?? That means C could be the hot new functional programming language!"*
 
 **First thought**: "Function pointers in C... this is definitely about hijacking a function pointer on the stack."
 
-#### Initial Analysis
+### Initial Analysis
 
 Running `checksec` on the binary:
 
@@ -53,11 +47,11 @@ PIE:        PIE enabled
 - NX enabled → Can't execute shellcode on the stack
 - PIE enabled → Need to leak addresses first
 
-#### Reverse Engineering
+### Reverse Engineering
 
 Using Binary Ninja, I found three interesting functions:
 
-##### `main()` (decompiled):
+#### `main()` (decompiled):
 ```c
 puts("Hello functional world! Whats your name?");
 fgets(&buf, 0x100, stdin);  // Reads 256 bytes!
@@ -75,14 +69,14 @@ puts("bye!");
 return 0;
 ```
 
-##### `admin_func()`:
+#### `admin_func()`:
 ```c
 printf("hello %s!\n", arg1);
 puts("bossman, you get an extra loop!");
 return 1;  // Non-zero keeps the loop going
 ```
 
-##### `user_func()`:
+#### `user_func()`:
 ```c
 printf("hello %s.\n", arg1);
 puts("you're just a regular user.");
@@ -94,7 +88,7 @@ return 0;  // Zero exits the loop
 - `fgets()` reads `0x100` (256 bytes)
 - Classic buffer overflow: **156 bytes overflow!**
 
-#### Finding the Stack Layout
+### Finding the Stack Layout
 
 Looking at the disassembly, I traced where everything lives:
 
@@ -116,7 +110,7 @@ mov     qword [rbp-0x8], rax ; function pointer here
 
 **Key insight**: By overflowing 104 bytes, I can overwrite the function pointer. By overflowing 120+ bytes, I can control the return address!
 
-#### Stage 1: Leaking PIE Base
+### Stage 1: Leaking PIE Base
 
 **Problem**: With PIE enabled, I don't know where `admin_func`, `user_func`, or any gadgets are located.
 
@@ -147,7 +141,7 @@ pie_base = leaked_addr - 0x11a9  # admin_func offset
 
 **Success!** Now I know where everything is in the binary.
 
-#### Stage 2: Leaking libc
+### Stage 2: Leaking libc
 
 **Problem**: I need `system()` to get a shell, but it's in libc. With ASLR, libc's base address is randomized.
 
@@ -204,7 +198,7 @@ binsh_addr = libc_base + 0x1b45bd
 
 **Success!** Now I know where `system()` and the `/bin/sh` string are in libc.
 
-#### Stage 3: Popping a Shell
+### Stage 3: Popping a Shell
 
 **Final objective**: Call `system("/bin/sh")` to get a shell.
 
@@ -243,7 +237,7 @@ payload += p64(system_addr)    # Call system
 7. `pop rdi` → `binsh_addr` → `ret` → `system`
 8. **Shell spawned!**
 
-#### Getting the Flag
+### Getting the Flag
 
 Once I had the shell:
 
@@ -254,7 +248,7 @@ openECSC{v3ry_funct10n4l_v3ry_w0w}
 
 **🎉 FLAG CAPTURED!**
 
-#### Why This Worked
+### Why This Worked
 
 The beauty of this exploit is the three-stage approach:
 
@@ -264,11 +258,11 @@ The beauty of this exploit is the three-stage approach:
 
 The challenge title was a perfect hint: "C supports function pointers" → The function pointer vulnerability is the entry point for the entire exploit chain!
 
-### Solution Script
+## Solution Script
 
 [exploit.py](exploit.py)
 
-### Flag
+## Flag
 
 **`openECSC{v3ry_funct10n4l_v3ry_w0w}`**
 
