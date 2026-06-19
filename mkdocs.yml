@@ -50,7 +50,11 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -80,11 +84,23 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - Home: 
+  - Home:
         - Home: index.md
+        - BSides Vilnius 2026: 2026/bsides-vilnius/README.md
         - Mārtiņa-CTF 2025: 2025/martina-ctf/README.md
         - ECSC 2025: 2025/ecsc/README.md
         - openECSC 2025: 2025/openecsc/README.md
+  - BSides Vilnius 2026:
+      - 2026/bsides-vilnius/README.md
+      - Web:
+          - BSides Nail Salon: 2026/bsides-vilnius/web/nail-salon/writeup.md
+          - Operation (DroneOps PTZ Camera): 2026/bsides-vilnius/web/operation/writeup.md
+      - Pwn:
+          - BOF2root: 2026/bsides-vilnius/pwn/bof2root/writeup.md
+      - Reverse:
+          - Ticket4Free: 2026/bsides-vilnius/reverse/ticket4free/writeup.md
+      - Crypto:
+          - S3cur3: 2026/bsides-vilnius/crypto/s3cur3/writeup.md
   - Mārtiņa-CTF 2025:
       - 2025/martina-ctf/README.md
       - Web:

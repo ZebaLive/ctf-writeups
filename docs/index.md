@@ -16,6 +16,10 @@ Learn cybersecurity techniques including **web exploitation** (XSS, SSRF, SQL in
 
 Use the sidebar navigation to browse writeups by competition:
 
+### 2026
+
+- **[BSides Vilnius 2026](2026/bsides-vilnius/README.md)** - Selected writeups across web, pwn, reverse, and crypto
+
 ### 2025
 
 - **[Mārtiņa-CTF 2025](2025/martina-ctf/README.md)** - 12 challenges solved, 1st place (Remote)

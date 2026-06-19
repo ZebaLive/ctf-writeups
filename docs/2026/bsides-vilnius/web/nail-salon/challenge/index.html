@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BSides Nail Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink-deep:  #c0005a;
+      --pink-mid:   #ff6eb4;
+      --pink-light: #ffb3d9;
+      --pink-pale:  #ffe0f0;
+      --cream:      #fff5fa;
+      --text-dark:  #2a0018;
+    }
+
+    body {
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(circle, rgba(255,110,180,.09) 1px, transparent 1px),
+        radial-gradient(circle, rgba(192,0,90,.05)    1px, transparent 1px);
+      background-size: 28px 28px, 56px 56px;
+      animation: bg-drift 12s linear infinite;
+      font-family: 'Press Start 2P', monospace;
+      color: var(--text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @keyframes bg-drift {
+      from { background-position: 0 0, 0 0; }
+      to   { background-position: 56px 56px, 112px 112px; }
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%,
+        rgba(255,179,217,.22) 0%, transparent 70%);
+      animation: pulse-glow 6s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes pulse-glow {
+      from { opacity: .6; transform: scale(1); }
+      to   { opacity: 1;  transform: scale(1.08); }
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent, transparent 2px,
+        rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px
+      );
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ── Background nail canvas ── */
+    #bgNails {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      image-rendering: pixelated;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 56px 24px 0;
+      width: 100%;
+    }
+    .sparkle-ring { display: inline-block; position: relative; }
+    .sparkle-ring::before,
+    .sparkle-ring::after {
+      content: '✦';
+      position: absolute;
+      font-size: 10px;
+      color: var(--pink-mid);
+      animation: twinkle 1.4s ease-in-out infinite alternate;
+    }
+    .sparkle-ring::before { top: -16px; left: -20px; animation-delay: 0s; }
+    .sparkle-ring::after  { top: -16px; right: -20px; animation-delay: .7s; }
+    @keyframes twinkle {
+      from { opacity: 1;   transform: scale(1)   rotate(0deg); }
+      to   { opacity: 0.2; transform: scale(1.6) rotate(30deg); }
+    }
+
+    h1 {
+      font-size: clamp(18px, 4vw, 32px);
+      line-height: 1.5;
+      letter-spacing: 2px;
+      color: var(--pink-deep);
+      text-shadow:
+         3px  3px 0 var(--text-dark),
+        -1px -1px 0 var(--text-dark),
+         1px -1px 0 var(--text-dark),
+        -1px  1px 0 var(--text-dark);
+      margin-bottom: 28px;
+    }
+
+    .hero-box {
+      display: inline-block;
+      border: 3px solid var(--pink-deep);
+      background: var(--pink-pale);
+      padding: 28px 40px;
+      margin-bottom: 48px;
+      white-space: nowrap;
+      box-shadow:
+        -3px -3px 0 var(--pink-deep),
+         3px -3px 0 var(--pink-deep),
+        -3px  3px 0 var(--pink-deep),
+         3px  3px 0 var(--pink-deep);
+    }
+
+    .hero-box h1 {
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: clamp(7px, 1.6vw, 11px);
+      line-height: 2.2;
+      color: var(--pink-deep);
+      letter-spacing: 1px;
+      display: block;
+      white-space: nowrap;
+      margin: 0;
+      border: none;
+      background: none;
+      padding: 0;
+      box-shadow: none;
+    }
+    .subtitle .nail-emoji {
+      font-size: 1.8em;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    /* ── Upload card ── */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: white;
+      border: 4px solid var(--text-dark);
+      box-shadow: 8px 8px 0 var(--pink-deep);
+      padding: 36px 40px;
+      max-width: 500px;
+      width: 90%;
+      margin-bottom: 64px;
+    }
+    .card-title { font-size: 9px; letter-spacing: 1px; color: var(--pink-mid); margin-bottom: 24px; text-transform: uppercase; }
+
+    .drop-zone {
+      border: 3px dashed var(--pink-mid);
+      background: var(--pink-pale);
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: background .15s;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .drop-zone:hover, .drop-zone.drag-over { background: var(--pink-light); }
+    .drop-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .drop-zone-icon { display: block; margin: 0 auto 12px; image-rendering: pixelated; }
+    .drop-zone-label { font-size: 7px; line-height: 2; color: var(--pink-deep); }
+    .file-name { font-size: 7px; color: var(--pink-deep); margin-top: 8px; word-break: break-all; min-height: 14px; }
+
+    .btn-submit {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      background: var(--pink-deep);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      cursor: pointer;
+      width: 100%;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--text-dark);
+      transition: transform .1s, box-shadow .1s;
+    }
+    .btn-submit:hover  { background: var(--pink-mid); transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--text-dark); }
+    .btn-submit:active { transform: translate(3px,3px); box-shadow: 1px 1px 0 var(--text-dark); }
+
+    footer { position: relative; z-index: 1; font-size: 6px; color: var(--pink-mid); letter-spacing: 1px; padding-bottom: 24px; opacity: .7; }
+
+    /* ── Floating sparkles ── */
+    .floaters { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .floater  { position: absolute; color: var(--pink-mid); animation: float-up linear infinite; opacity: 0; }
+    @keyframes float-up {
+      0%   { opacity: 0;  transform: translateY(0) rotate(0deg); }
+      10%  { opacity: .8; }
+      90%  { opacity: .5; }
+      100% { opacity: 0;  transform: translateY(-80vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bgNails"></canvas>
+  <div class="floaters" id="floaters"></div>
+
+  <section class="hero">
+    <div class="sparkle-ring">
+      <div class="hero-box">
+        <h1>BSides Nail Salon</h1>
+        <p class="subtitle"><span class="nail-emoji">💅</span> We style your nails, you style our webapp <span class="nail-emoji">💅</span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="card">
+    <p class="card-title">Upload your design</p>
+    <form id="uploadForm" enctype="multipart/form-data">
+      <div class="drop-zone" id="dropZone">
+        <canvas class="drop-zone-icon" id="iconCanvas" width="30" height="42"></canvas>
+        <span class="drop-zone-label">DROP YOUR FANCY CSS FILE HERE<br>or click to browse</span>
+        <input type="file" id="fileInput" name="file" accept=".css,text/css" />
+      </div>
+      <p class="file-name" id="fileName">no file selected</p>
+      <button type="submit" class="btn-submit">Submit &gt;&gt;</button>
+    </form>
+  </div>
+
+
+  <script>
+    // ── Pixel art nail definition ──────────────────────────────
+    const NAIL_SHAPE = [
+      [0,0,1,1,1,1,1,1,0,0],
+      [0,1,2,2,2,2,2,2,1,0],
+      [0,1,2,3,3,2,2,2,1,0],
+      [1,2,2,3,3,2,2,2,2,1],
+      [1,2,2,2,2,2,2,2,2,1],
+      [1,2,2,2,2,2,2,2,2,1],
+      [1,2,2,2,2,2,4,2,2,1],
+      [1,2,2,2,2,2,2,2,2,1],
+      [1,2,2,2,2,2,2,2,2,1],
+      [1,2,2,2,2,2,2,2,2,1],
+      [0,1,2,2,2,2,2,2,1,0],
+      [0,1,1,2,2,2,2,1,1,0],
+      [0,0,1,1,1,1,1,1,0,0],
+      [0,0,0,1,1,1,1,0,0,0],
+    ];
+
+    const NAIL_PALETTES = [
+      { base:'#ff6eb4', outline:'#2a0018', hi:'#ffb3d9', glitter:'#fff5fa' },
+      { base:'#c0005a', outline:'#2a0018', hi:'#ff6eb4', glitter:'#ffecf7' },
+      { base:'#c084fc', outline:'#2a0018', hi:'#e9d5ff', glitter:'#f5f3ff' },
+      { base:'#fb7185', outline:'#2a0018', hi:'#fda4af', glitter:'#fff1f2' },
+      { base:'#34d399', outline:'#2a0018', hi:'#a7f3d0', glitter:'#ecfdf5' },
+      { base:'#60a5fa', outline:'#2a0018', hi:'#bfdbfe', glitter:'#eff6ff' },
+      { base:'#fbbf24', outline:'#2a0018', hi:'#fde68a', glitter:'#fffbeb' },
+    ];
+
+    const NAIL_PX = 3; // art pixels → screen pixels
+    const NAIL_W  = 10 * NAIL_PX; // 30px
+    const NAIL_H  = 14 * NAIL_PX; // 42px
+
+    function drawNailOnCtx(ctx, ox, oy, palette) {
+      const cm = { 1: palette.outline, 2: palette.base, 3: palette.hi, 4: palette.glitter };
+      for (let y = 0; y < 14; y++) {
+        for (let x = 0; x < 10; x++) {
+          const c = cm[NAIL_SHAPE[y][x]];
+          if (c) { ctx.fillStyle = c; ctx.fillRect(ox + x * NAIL_PX, oy + y * NAIL_PX, NAIL_PX, NAIL_PX); }
+        }
+      }
+    }
+
+    // Pre-render one sprite per palette
+    const sprites = NAIL_PALETTES.map(palette => {
+      const c = document.createElement('canvas');
+      c.width = NAIL_W; c.height = NAIL_H;
+      drawNailOnCtx(c.getContext('2d'), 0, 0, palette);
+      return c;
+    });
+
+    // ── Background canvas: scrolling nail rows ─────────────────
+    const bgCanvas = document.getElementById('bgNails');
+    const bgCtx    = bgCanvas.getContext('2d');
+    bgCtx.imageSmoothingEnabled = false;
+
+    const GAP_X = 18;  // horizontal gap between nails
+    const GAP_Y = 22;  // vertical gap between rows
+    const STEP  = NAIL_W + GAP_X;
+
+    // Each row: independent scroll speed + colour offset
+    let rows = [];
+
+    function buildRows() {
+      bgCanvas.width  = window.innerWidth;
+      bgCanvas.height = window.innerHeight;
+      rows = [];
+      const rowCount = Math.ceil(bgCanvas.height / (NAIL_H + GAP_Y)) + 1;
+      for (let r = 0; r < rowCount; r++) {
+        rows.push({
+          y:      r * (NAIL_H + GAP_Y),
+          offset: (r * 47) % STEP,        // stagger start per row
+          speed:  0.3 + (r % 3) * 0.12,   // slight speed variation per row
+          cOff:   r % NAIL_PALETTES.length,
+          bright: 0.18 + (r % 2) * 0.07,  // alternate opacity
+        });
+      }
+    }
+    window.addEventListener('resize', buildRows);
+    buildRows();
+
+    let lastT = 0;
+    function animateBg(ts) {
+      const dt = Math.min(ts - lastT, 32);
+      lastT = ts;
+
+      bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+      rows.forEach(row => {
+        row.offset = (row.offset + row.speed * (dt / 16)) % STEP;
+
+        const count = Math.ceil(bgCanvas.width / STEP) + 2;
+        const startX = -(row.offset % STEP);
+
+        bgCtx.globalAlpha = row.bright;
+        for (let i = 0; i < count; i++) {
+          const x = startX + i * STEP;
+          const sprite = sprites[(row.cOff + i) % sprites.length];
+          bgCtx.drawImage(sprite, x, row.y);
+        }
+      });
+
+      bgCtx.globalAlpha = 1;
+      requestAnimationFrame(animateBg);
+    }
+    requestAnimationFrame(animateBg);
+
+    // ── Drop zone icon ─────────────────────────────────────────
+    const icon = document.getElementById('iconCanvas');
+    icon.style.cssText = 'width:30px;height:42px';
+    drawNailOnCtx(icon.getContext('2d'), 0, 0, NAIL_PALETTES[0]);
+
+    // ── File input UX ──────────────────────────────────────────
+    const fileInput  = document.getElementById('fileInput');
+    const fileNameEl = document.getElementById('fileName');
+    const dropZone   = document.getElementById('dropZone');
+
+    fileInput.addEventListener('change', () => {
+      fileNameEl.textContent = fileInput.files[0] ? fileInput.files[0].name : 'no file selected';
+    });
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', e => {
+      e.preventDefault(); dropZone.classList.remove('drag-over');
+      const f = e.dataTransfer.files[0];
+      if (f) { const dt = new DataTransfer(); dt.items.add(f); fileInput.files = dt.files; fileNameEl.textContent = f.name; }
+    });
+    document.getElementById('uploadForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!fileInput.files[0]) { fileNameEl.textContent = '>> please select a file first'; return; }
+
+      const btn = document.querySelector('.btn-submit');
+      btn.disabled = true;
+      btn.textContent = 'SUBMITTING...';
+
+      try {
+        const cssText = await fileInput.files[0].text();
+        const res = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ customCSS: cssText }),
+        });
+        const data = await res.json();
+        fileNameEl.textContent = data.message;
+      } catch (err) {
+        fileNameEl.textContent = '>> error: ' + err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Submit >>';
+      }
+    });
+
+    // ── Floating sparkles ──────────────────────────────────────
+    const floatersEl = document.getElementById('floaters');
+    const FLOAT_SYMS = [
+      { sym: '★', count: 12 },
+      { sym: '✦', count: 10 },
+      { sym: '✧', count: 10 },
+      { sym: '⭐', count: 6  },
+      { sym: '💫', count: 5  },
+      { sym: '✨', count: 6  },
+      { sym: '♦',  count: 4  },
+      { sym: '♡',  count: 4  },
+      { sym: '◆',  count: 3  },
+    ];
+    FLOAT_SYMS.forEach(({ sym, count }) => {
+      for (let i = 0; i < count; i++) {
+        const span = document.createElement('span');
+        span.className = 'floater';
+        span.textContent = sym;
+        span.style.left      = Math.random() * 100 + 'vw';
+        span.style.fontSize  = (7 + Math.random() * 16) + 'px';
+        span.style.animation = `float-up ${7 + Math.random() * 16}s ${Math.random() * 14}s linear infinite`;
+        floatersEl.appendChild(span);
+      }
+    });
+  </script>
+</body>
+</html>
