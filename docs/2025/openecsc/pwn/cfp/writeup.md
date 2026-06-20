@@ -7,11 +7,14 @@ category: pwn
 difficulty: easy
 flag_format: "openECSC{...}"
 author: "zeba"
+tags:
+  - openECSC 2025
+  - Pwn
+  - Easy
+  - ROP
+  - Buffer Overflow
 ---
-
 # cfp
-
-**openECSC 2025** · Pwn · Easy
 
 ## Solution Overview
 

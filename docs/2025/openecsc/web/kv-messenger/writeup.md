@@ -7,11 +7,15 @@ category: web
 difficulty: medium
 flag_format: "openECSC{...}"
 author: "zeba"
+tags:
+  - openECSC 2025
+  - Web
+  - Medium
+  - CSP Bypass
+  - CRLF Injection
+  - Trusted Types
 ---
-
 # kv-messenger
-
-**openECSC 2025** · Web · Medium
 
 ## Solution Overview
 

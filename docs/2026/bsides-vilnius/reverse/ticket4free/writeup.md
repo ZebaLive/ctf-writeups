@@ -8,11 +8,13 @@ difficulty: medium
 points: 200
 flag_format: "BSIDES{...}"
 author: "zeba"
+tags:
+  - BSides Vilnius 2026
+  - Reverse
+  - Medium
+  - Windows PE
 ---
-
 # Ticket4Free
-
-**BSides Vilnius 2026** · Reverse · Medium
 
 ## Solution Overview
 

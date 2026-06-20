@@ -7,11 +7,14 @@ category: crypto
 difficulty: medium
 flag_format: "openECSC{...}"
 author: "zeba"
+tags:
+  - openECSC 2025
+  - Crypto
+  - Medium
+  - CRC
+  - Linear Algebra
 ---
-
 # Polite Email
-
-**openECSC 2025** · Crypto · Medium
 
 ## Solution Overview
 

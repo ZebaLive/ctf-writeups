@@ -7,11 +7,13 @@ category: stego
 difficulty: medium
 flag_format: "openECSC{...}"
 author: "zeba"
+tags:
+  - openECSC 2025
+  - Stego
+  - Medium
+  - APNG
 ---
-
 # Calamansi
-
-**openECSC 2025** · Stego · Medium
 
 ## Solution Overview
 

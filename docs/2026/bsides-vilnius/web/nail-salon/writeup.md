@@ -8,11 +8,15 @@ difficulty: hard
 points: 500
 flag_format: "BSIDES{...}"
 author: "zeba"
+tags:
+  - BSides Vilnius 2026
+  - Web
+  - Hard
+  - AWS
+  - CSS Injection
+  - IAM
 ---
-
 # BSides Nail Salon
-
-**BSides Vilnius 2026** · Web · Hard
 
 ## Solution Overview
 

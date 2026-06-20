@@ -7,11 +7,14 @@ category: misc
 points: TBD
 flag_format: "ECSC{...}"
 author: "zeba"
+tags:
+  - ECSC 2025
+  - Misc
+  - Forensics
+  - PCAP
+  - Bluetooth
 ---
-
 # Blue Mouse
-
-**ECSC 2025** · Misc
 
 ## Challenge Description
 

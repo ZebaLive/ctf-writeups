@@ -7,11 +7,13 @@ category: misc
 points: 256
 flag_format: "MCTF25{...}"
 author: "zeba"
+tags:
+  - Mārtiņa-CTF 2025
+  - Misc
+  - Git
+  - Forensics
 ---
-
 # Rewritten History
-
-**Mārtiņa-CTF 2025** · Misc · 256 pts
 
 ## Challenge Description
 

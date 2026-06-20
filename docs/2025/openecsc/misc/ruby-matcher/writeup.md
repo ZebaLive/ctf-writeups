@@ -7,11 +7,14 @@ category: misc
 difficulty: medium
 flag_format: "openECSC{...}"
 author: "zeba"
+tags:
+  - openECSC 2025
+  - Misc
+  - Medium
+  - Ruby
+  - Regex
 ---
-
 # ruby-matcher
-
-**openECSC 2025** · Misc · Medium
 
 ## Solution Overview
 

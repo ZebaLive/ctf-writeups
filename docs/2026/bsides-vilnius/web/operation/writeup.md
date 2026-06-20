@@ -8,11 +8,14 @@ difficulty: medium
 points: 150
 flag_format: "BSIDES{...}"
 author: "zeba"
+tags:
+  - BSides Vilnius 2026
+  - Web
+  - Medium
+  - IoT
+  - Password Cracking
 ---
-
 # Operation (DroneOps PTZ Camera)
-
-**BSides Vilnius 2026** · Web · Medium
 
 ## Solution Overview
 

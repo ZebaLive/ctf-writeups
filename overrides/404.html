@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="ctf-hero" style="margin-top:2rem;">
+  <h1 style="font-size:4.5rem;">404</h1>
+  <p>This flag doesn't exist — the page you're looking for was moved, removed, or never captured.</p>
+  <div class="ctf-cta">
+    <a class="md-button md-button--primary" href="{{ base_url }}/">Back to home</a>
+    <a class="md-button" href="{{ base_url }}/tags/">Browse by tag</a>
+  </div>
+</div>
+{% endblock %}

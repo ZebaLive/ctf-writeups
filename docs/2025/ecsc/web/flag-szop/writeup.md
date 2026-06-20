@@ -7,11 +7,16 @@ category: web
 difficulty: medium
 flag_format: "ECSC{...}"
 author: "zeba"
+tags:
+  - ECSC 2025
+  - Web
+  - Medium
+  - SSRF
+  - PHP
+  - Type Juggling
+  - Webshell
 ---
-
 # Flag Szop
-
-**ECSC 2025** · Web · Medium
 
 ## Solution Overview
 

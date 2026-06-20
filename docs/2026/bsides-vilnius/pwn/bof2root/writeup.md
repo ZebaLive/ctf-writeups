@@ -8,11 +8,14 @@ difficulty: medium
 points: 150
 flag_format: "BSIDES{...}"
 author: "zeba"
+tags:
+  - BSides Vilnius 2026
+  - Pwn
+  - Medium
+  - Buffer Overflow
+  - Container Escape
 ---
-
 # BOF2root
-
-**BSides Vilnius 2026** · Pwn · Medium
 
 ## Solution Overview
 

@@ -7,8 +7,14 @@ repo_name: ZebaLive/ctf-writeups
 
 theme:
   name: material
-  logo: https://github.com/ZebaLive.png
-  favicon: https://github.com/ZebaLive.png
+  custom_dir: overrides
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Inter
+    code: JetBrains Mono
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
@@ -33,15 +39,21 @@ theme:
         name: Switch to system preference
   features:
     - navigation.instant
+    - navigation.instant.progress
     - navigation.tracking
     - navigation.tabs
     - navigation.sections
-    - navigation.expand
     - navigation.indexes
+    - navigation.path
     - navigation.top
+    - navigation.footer
+    - toc.follow
     - search.suggest
     - search.highlight
+    - search.share
     - content.code.copy
+    - content.code.annotate
+    - content.tooltips
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -50,6 +62,9 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -72,6 +87,12 @@ plugins:
   - search:
       lang: en
   - meta
+  - tags:
+      listings_toc: false
+  - social:
+      cards_layout_options:
+        background_color: "#1a1625"
+        color: "#ffffff"
 
 extra:
   social:
@@ -86,6 +107,7 @@ extra_css:
 nav:
   - Home:
         - Home: index.md
+        - Tags: tags.md
         - BSides Vilnius 2026: 2026/bsides-vilnius/README.md
         - Mārtiņa-CTF 2025: 2025/martina-ctf/README.md
         - ECSC 2025: 2025/ecsc/README.md

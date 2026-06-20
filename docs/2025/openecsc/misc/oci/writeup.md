@@ -7,11 +7,14 @@ category: misc
 difficulty: medium
 flag_format: "OpenECSC{...}"
 author: "zeba"
+tags:
+  - openECSC 2025
+  - Misc
+  - Medium
+  - Docker
+  - Web
 ---
-
 # OCI
-
-**openECSC 2025** · Misc, Web · Medium
 
 ## Solution Overview
 

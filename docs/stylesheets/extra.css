@@ -1,23 +1,436 @@
+/* ===========================================================================
+   CTF Writeups — design system
+   Built on MkDocs Material. Dark-first, security-lab aesthetic.
+   =========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. Color tokens
+   --------------------------------------------------------------------------- */
+:root {
+  --ctf-accent:        #8b7cff;
+  --ctf-accent-2:      #c084fc;
+  --ctf-accent-glow:   rgba(139, 124, 255, 0.35);
+
+  /* category hues */
+  --cat-web:      #38bdf8;
+  --cat-pwn:      #fb7185;
+  --cat-crypto:   #a78bfa;
+  --cat-reverse:  #f59e0b;
+  --cat-stego:    #34d399;
+  --cat-misc:     #94a3b8;
+  --cat-forensics:#22d3ee;
+
+  /* difficulty hues */
+  --diff-easy:    #34d399;
+  --diff-medium:  #fbbf24;
+  --diff-hard:    #f87171;
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:        #6d5bd0;
+  --md-accent-fg-color:         #6d5bd0;
+  --ctf-surface:                #ffffff;
+  --ctf-surface-2:              #f6f4fc;
+  --ctf-border:                 rgba(20, 16, 40, 0.10);
+  --ctf-muted:                  #5b5570;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 264;
+  --md-primary-fg-color:        #2a2440;
+  --md-accent-fg-color:         var(--ctf-accent);
+  --md-default-bg-color:        #14101f;
+  --md-code-bg-color:           #1c1730;
+  --ctf-surface:                #1b1730;
+  --ctf-surface-2:              #221c3a;
+  --ctf-border:                 rgba(139, 124, 255, 0.18);
+  --ctf-muted:                  #a59fc4;
+}
+
+/* ---------------------------------------------------------------------------
+   2. Typography
+   --------------------------------------------------------------------------- */
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.md-typeset {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  /* single knob: all content fonts are em-relative to this, so lowering it
+     scales body text, headings, hero, badges, tags and code equally.
+     Material's default is 0.8rem. */
+  font-size: 0.75rem;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5em;
+}
+
+.md-typeset h1 {
+  font-size: 2em; /* Material's native h1 scale (was 2.1rem ≈ 46px, off-scale) */
+  line-height: 1.15;
+}
+
+/* ---------------------------------------------------------------------------
+   3. Header — subtle gradient + glow
+   --------------------------------------------------------------------------- */
+.md-header {
+  background: linear-gradient(100deg, #1d1733 0%, #2a2147 55%, #3a2a63 100%);
+  box-shadow: 0 1px 0 var(--ctf-border), 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* tabs bar sits below the header — keep a solid primary bg so the
+   white tab labels stay legible (transparent breaks light mode) */
+.md-tabs {
+  background: #2a2147;
+}
+
+[data-md-color-scheme="default"] .md-header {
+  background: linear-gradient(100deg, #5a47b8 0%, #6d5bd0 55%, #8b6ee0 100%);
+}
+
+[data-md-color-scheme="default"] .md-tabs {
+  background: #6d5bd0;
+}
+
+/* ---------------------------------------------------------------------------
+   4. Hero (homepage)
+   --------------------------------------------------------------------------- */
+.ctf-hero {
+  position: relative;
+  text-align: center;
+  padding: 3.5rem 1rem 1.5rem;
+  margin: -1rem 0 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 400px at 50% -10%, var(--ctf-accent-glow), transparent 70%),
+    var(--ctf-surface);
+  border: 1px solid var(--ctf-border);
+}
+
+.ctf-avatar {
+  display: block;
+  margin: 0 auto 1rem;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid var(--ctf-accent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--ctf-accent) 14%, transparent),
+              0 8px 28px -8px var(--ctf-accent-glow);
+}
+
+.ctf-kicker {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.875em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ctf-accent);
+  background: color-mix(in srgb, var(--ctf-accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ctf-accent) 35%, transparent);
+}
+
+.ctf-hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: 3.25em; /* = 2.6rem, expressed on the typeset scale */
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(92deg, var(--ctf-accent), var(--ctf-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ctf-hero p {
+  margin: 0 auto;
+  max-width: 40rem;
+  color: var(--ctf-muted);
+  font-size: 1.2em; /* = 0.95rem */
+}
+
+.ctf-hero .ctf-cta {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ctf-hero .ctf-cta .md-button {
+  border-radius: 0.6rem;
+  border-color: color-mix(in srgb, var(--ctf-accent) 55%, transparent);
+  color: var(--md-typeset-color);
+}
+
+[data-md-color-scheme="slate"] .ctf-hero .ctf-cta .md-button {
+  color: #ffffff;
+}
+
+.ctf-hero .ctf-cta .md-button:hover {
+  background: var(--ctf-accent);
+  border-color: var(--ctf-accent);
+  color: #ffffff;
+}
+
+.ctf-hero .ctf-cta .md-button--primary {
+  background: var(--ctf-accent);
+  border-color: var(--ctf-accent);
+  color: #ffffff;
+}
+
+.ctf-hero .ctf-cta .md-button--primary:hover {
+  background: var(--ctf-accent-2);
+  border-color: var(--ctf-accent-2);
+}
+
+/* stat row */
+.ctf-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+}
+
+@media (max-width: 600px) {
+  .ctf-stats { grid-template-columns: repeat(2, 1fr); }
+  .ctf-hero h1 { font-size: 2.5em; }
+  .ctf-hero .ctf-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+    width: 100%;
+  }
+  .ctf-hero .ctf-cta .md-button {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.ctf-stat {
+  padding: 1rem 0.5rem;
+  border-radius: 0.8rem;
+  background: var(--ctf-surface-2);
+  border: 1px solid var(--ctf-border);
+  text-align: center;
+}
+
+.ctf-stat .num {
+  display: block;
+  font-size: 2.125em; /* = 1.7rem */
+  font-weight: 800;
+  line-height: 1;
+  color: var(--ctf-accent);
+}
+
+.ctf-stat .label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.875em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ctf-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   5. Grid cards — lift + accent on hover
+   --------------------------------------------------------------------------- */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border: 1px solid var(--ctf-border);
+  border-radius: 0.8rem;
+  background: var(--ctf-surface);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-4px);
+  border-color: var(--ctf-accent);
+  box-shadow: 0 12px 30px -12px var(--ctf-accent-glow);
+}
+
+/* ---------------------------------------------------------------------------
+   6. Writeup tags (native Material tags, rendered above the title)
+   CTF / category / difficulty / techniques are all real plugin tags now.
+   --------------------------------------------------------------------------- */
+.md-typeset .md-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1.1rem;
+}
+
+/* assign a colour to category + difficulty tags by their slug */
+.md-typeset .md-tag[href$="#tag:web"]      { --c: var(--cat-web); }
+.md-typeset .md-tag[href$="#tag:pwn"]      { --c: var(--cat-pwn); }
+.md-typeset .md-tag[href$="#tag:crypto"]   { --c: var(--cat-crypto); }
+.md-typeset .md-tag[href$="#tag:reverse"]  { --c: var(--cat-reverse); }
+.md-typeset .md-tag[href$="#tag:stego"]    { --c: var(--cat-stego); }
+.md-typeset .md-tag[href$="#tag:misc"]     { --c: var(--cat-misc); }
+.md-typeset .md-tag[href$="#tag:easy"]     { --c: var(--diff-easy); }
+.md-typeset .md-tag[href$="#tag:medium"]   { --c: var(--diff-medium); }
+.md-typeset .md-tag[href$="#tag:hard"]     { --c: var(--diff-hard); }
+
+/* apply that colour as a filled pill */
+.md-typeset .md-tags :is(
+  [href$="#tag:web"], [href$="#tag:pwn"], [href$="#tag:crypto"],
+  [href$="#tag:reverse"], [href$="#tag:stego"], [href$="#tag:misc"],
+  [href$="#tag:easy"], [href$="#tag:medium"], [href$="#tag:hard"]
+) {
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+  color: var(--c);
+  border-color: color-mix(in srgb, var(--c) 42%, transparent);
+}
+
+.md-typeset .md-tags :is(
+  [href$="#tag:web"], [href$="#tag:pwn"], [href$="#tag:crypto"],
+  [href$="#tag:reverse"], [href$="#tag:stego"], [href$="#tag:misc"],
+  [href$="#tag:easy"], [href$="#tag:medium"], [href$="#tag:hard"]
+):hover {
+  color: var(--c);
+  border-color: var(--c);
+}
+
+/* ---------------------------------------------------------------------------
+   7. Premium code blocks
+   --------------------------------------------------------------------------- */
+.md-typeset .highlight {
+  border-radius: 0.7rem;
+  border: 1px solid var(--ctf-border);
+  overflow: hidden;
+  /* unify container + code area into a single background */
+  background: var(--md-code-bg-color);
+  /* clear vertical gap between consecutive code boxes */
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+/* the inner <pre> margin is trapped by overflow:hidden and inflates the
+   box height (and pushes the copy button out of alignment) — remove it */
+.md-typeset .highlight pre {
+  margin: 0.25em;
+}
+
+/* tighten inner padding of code blocks */
+.md-typeset .highlight pre > code {
+  padding: 0.5em 0.9em;
+}
+
+/* the copy-button wrapper defaults to top: .25em, which sits low in the
+   compact box — align it to the top so it centres on the first line */
+.md-typeset .highlight .md-code__nav {
+  top: 0;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .highlight {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+/* filename bar via the highlight title (title="...") */
+.md-typeset .highlight > span:first-child,
+.md-typeset .highlighttable .filename {
+  font-family: var(--md-code-font-family);
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+  color: var(--ctf-muted);
+  background: var(--ctf-surface-2);
+  border-bottom: 1px solid var(--ctf-border);
+}
+
+/* inline code chips */
+.md-typeset code {
+  border-radius: 0.35rem;
+  padding: 0.1rem 0.35rem;
+}
+
+/* ---------------------------------------------------------------------------
+   8. Tags
+   --------------------------------------------------------------------------- */
+.md-typeset .md-tag {
+  border-radius: 999px;
+  font-size: 0.875em;
+  background: var(--ctf-surface-2);
+  border: 1px solid var(--ctf-border);
+}
+
+.md-typeset .md-tag:hover {
+  border-color: var(--ctf-accent);
+  color: var(--ctf-accent);
+}
+
+/* --- Tags index page (only headings that contain a tag pill) ------------- */
+/* compact tag headings — the big size came from the h2 scale */
+.md-typeset h2:has(> .md-tag) {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.1rem 0 0.5rem;
+}
+
+.md-typeset h2:has(> .md-tag) .md-tag {
+  font-size: 1em;
+  padding: 0.15rem 0.7rem;
+}
+
+/* the heading's permalink ¶ shouldn't inflate the row */
+.md-typeset h2:has(> .md-tag) .headerlink {
+  font-size: 0.8em;
+}
+
+/* render each tag's writeups as a compact wrapped row of chips */
+.md-typeset h2:has(> .md-tag) + ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.3rem;
+  padding: 0;
+}
+
+.md-typeset h2:has(> .md-tag) + ul > li {
+  margin: 0;
+}
+
+.md-typeset h2:has(> .md-tag) + ul > li > a {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 0.5rem;
+  background: var(--ctf-surface);
+  border: 1px solid var(--ctf-border);
+  font-size: 0.8em;
+  color: var(--ctf-muted);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.md-typeset h2:has(> .md-tag) + ul > li > a:hover {
+  border-color: var(--ctf-accent);
+  color: var(--ctf-accent);
+}
+
+/* ---------------------------------------------------------------------------
+   9. Misc polish
+   --------------------------------------------------------------------------- */
+.md-typeset a {
+  text-underline-offset: 0.15em;
+}
+
+.md-typeset table:not([class]) {
+  border-radius: 0.6rem;
+  overflow: hidden;
+  border: 1px solid var(--ctf-border);
+}
+
 /* Hide "Table of Contents" heading and the bullet list that follows it */
-article h2:has(#table-of-contents) {
-    display: none !important;
-}
-
-article h2:has(#table-of-contents) ~ ul:first-of-type {
-    display: none !important;
-}
-
-/* Fallback for browsers that don't support :has() */
-article h2#table-of-contents {
-    display: none !important;
-}
-
-article h2#table-of-contents + ul {
-    display: none !important;
-}
-
-/* More aggressive approach - hide the next ul after TOC heading */
+article h2:has(#table-of-contents) { display: none !important; }
+article h2:has(#table-of-contents) ~ ul:first-of-type { display: none !important; }
+article h2#table-of-contents { display: none !important; }
+article h2#table-of-contents + ul { display: none !important; }
 h2:has(#table-of-contents) + ul,
-h2#table-of-contents + ul {
-    display: none !important;
-}
+h2#table-of-contents + ul { display: none !important; }

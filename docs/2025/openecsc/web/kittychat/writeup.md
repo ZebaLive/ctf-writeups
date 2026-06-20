@@ -7,11 +7,14 @@ category: web
 difficulty: medium
 flag_format: "flag{...}"
 author: "zeba"
+tags:
+  - openECSC 2025
+  - Web
+  - Medium
+  - XSS
+  - WebSocket
 ---
-
 # kittychat
-
-**openECSC 2025** · Web · Medium
 
 ## Solution Overview
 

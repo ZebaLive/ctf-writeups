@@ -8,11 +8,14 @@ difficulty: medium
 points: 150
 flag_format: "BSIDES{...}"
 author: "zeba"
+tags:
+  - BSides Vilnius 2026
+  - Crypto
+  - Medium
+  - RSA
+  - TLS
 ---
-
 # S3cur3
-
-**BSides Vilnius 2026** · Crypto · Medium
 
 ## Solution Overview
 

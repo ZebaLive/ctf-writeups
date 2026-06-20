@@ -7,11 +7,14 @@ category: web
 difficulty: medium
 flag_format: "openECSC{...}"
 author: "zeba"
+tags:
+  - openECSC 2025
+  - Web
+  - Medium
+  - Prototype Pollution
+  - Flask
 ---
-
 # polish-bar
-
-**openECSC 2025** · Web · Medium
 
 ## Solution Overview
 

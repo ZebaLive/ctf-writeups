@@ -7,11 +7,13 @@ category: web
 points: 871
 flag_format: "MCTF25{...}"
 author: "zeba"
+tags:
+  - Mārtiņa-CTF 2025
+  - Web
+  - SQLi
+  - WAF Bypass
 ---
-
 # Possibly secure 2003 web app
-
-**Mārtiņa-CTF 2025** · (im)Possible Security · 871 pts
 
 ## Challenge Description
 
