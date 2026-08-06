@@ -23,21 +23,14 @@ It contains **detailed writeups, exploit scripts, and technical notes** document
 
 This site is built with [MkDocs](https://www.mkdocs.org/) and the [Material theme](https://squidfunk.github.io/mkdocs-material/).
 
-The project uses [asdf](https://asdf-vm.com/) for Python version management and [direnv](https://direnv.net/) for automatic environment activation. Dependencies are automatically installed when entering the directory.
+The project uses [uv](https://docs.astral.sh/uv/) for Python and dependency management. It installs the pinned Python and the locked dependencies on first run — no setup step needed.
 
 ```bash
-# First time setup
-asdf plugin add python
-
-asdf install
-
-direnv allow
-
 # Serve locally
-mkdocs serve
+uv run mkdocs serve
 
 # Build static site
-mkdocs build
+uv run mkdocs build
 ```
 
 ---
