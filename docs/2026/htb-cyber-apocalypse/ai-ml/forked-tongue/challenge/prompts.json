@@ -1,0 +1,122 @@
+{
+  "note": "Captured pre-tokenized petitions put to the herald. Feed each 'input_ids' through the model with greedy decoding to obtain the response token IDs. Stop generation at the <|end|> token.",
+  "special_tokens": {
+    "<|user|>": 736,
+    "<|assistant|>": 737,
+    "<|end|>": 738
+  },
+  "eos_id": 738,
+  "max_new_tokens": 64,
+  "requests": [
+    {
+      "id": "request_01",
+      "input_ids": [
+        736,
+        82,
+        117,
+        110,
+        260,
+        280,
+        97,
+        105,
+        264,
+        555,
+        32,
+        101,
+        120,
+        289,
+        116,
+        461,
+        260,
+        511,
+        459,
+        46,
+        737
+      ]
+    },
+    {
+      "id": "request_02",
+      "input_ids": [
+        736,
+        76,
+        522,
+        260,
+        551,
+        287,
+        260,
+        513,
+        332,
+        46,
+        737
+      ]
+    },
+    {
+      "id": "request_03",
+      "input_ids": [
+        736,
+        82,
+        406,
+        275,
+        101,
+        260,
+        32,
+        119,
+        274,
+        109,
+        45,
+        503,
+        257,
+        111,
+        107,
+        276,
+        461,
+        260,
+        511,
+        459,
+        46,
+        737
+      ]
+    },
+    {
+      "id": "request_04",
+      "input_ids": [
+        736,
+        83,
+        424,
+        427,
+        101,
+        260,
+        377,
+        291,
+        461,
+        507,
+        45,
+        475,
+        46,
+        737
+      ]
+    },
+    {
+      "id": "request_05",
+      "input_ids": [
+        736,
+        87,
+        104,
+        275,
+        32,
+        105,
+        115,
+        260,
+        548,
+        32,
+        111,
+        102,
+        260,
+        508,
+        336,
+        63,
+        737
+      ]
+    }
+  ]
+}

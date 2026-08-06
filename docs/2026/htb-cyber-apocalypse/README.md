@@ -25,6 +25,7 @@ Cyber Apocalypse is one of the largest jeopardy CTFs of the year. The 2026 editi
 
 - **[The Obligation Indexer](ai-ml/obligation-indexer/writeup.md)** (Easy) — An LLM chat that guards "read only your own account" in its system prompt but trusts its own persistent dossier. Direct requests and authority spoofing all bounce; the solve poisons the dossier with a fake "joint-registry statute" so a benign self-lookup leaks another petitioner's sealed debts — indirect prompt injection via conversational memory.
 - **[Memento](ai-ml/memento/writeup.md)** (Easy) — A static site maintained by a Claude Code agent, where a rogue auto-firing skill wrote an exfiltration beacon into the agent's project memory and then deleted itself. The pages still carry the mark; the flag is split one XOR'd chunk per page and the key lives in the skill blob the cover-up commit pruned — agent supply-chain forensics, entirely offline in `.git`.
+- **[Forked Tongue](ai-ml/forked-tongue/writeup.md)** (Medium) — A tiny GPT that answers ops petitions with bland status reports, shipped with a tokenizer that defines the same token ids twice. 47 forged `vocab` entries render the payload as "All systems nominal"; decoding the unchanged ids through `merges` instead exposes two C2 URLs whose `key` and `pad` XOR out to the flag — no network, no training, the model never lied.
 
 ### GamePwn
 
