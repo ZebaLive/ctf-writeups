@@ -108,10 +108,15 @@ nav:
   - Home:
         - Home: index.md
         - Tags: tags.md
+        - HTB Cyber Apocalypse 2026: 2026/htb-cyber-apocalypse/README.md
         - BSides Vilnius 2026: 2026/bsides-vilnius/README.md
         - Mārtiņa-CTF 2025: 2025/martina-ctf/README.md
         - ECSC 2025: 2025/ecsc/README.md
         - openECSC 2025: 2025/openecsc/README.md
+  - HTB Cyber Apocalypse 2026:
+      - 2026/htb-cyber-apocalypse/README.md
+      - GamePwn:
+          - The Salt Crown: 2026/htb-cyber-apocalypse/gamepwn/the-salt-crown/writeup.md
   - BSides Vilnius 2026:
       - 2026/bsides-vilnius/README.md
       - Web:

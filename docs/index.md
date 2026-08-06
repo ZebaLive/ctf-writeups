@@ -17,14 +17,14 @@ hide:
 <p>I'm <strong>zeba</strong>. This is where I document the CTF challenges I've solved — my approach, the exploit scripts, and notes on what worked. All my own writeups, kept here for reference.</p>
 
 <div class="ctf-cta" markdown>
-[Latest: BSides Vilnius 2026](2026/bsides-vilnius/README.md){ .md-button .md-button--primary }
+[Latest: HTB Cyber Apocalypse 2026](2026/htb-cyber-apocalypse/README.md){ .md-button .md-button--primary }
 [Browse by tag](tags.md){ .md-button }
 [:fontawesome-brands-github: GitHub](https://github.com/ZebaLive){ .md-button }
 </div>
 
 <div class="ctf-stats">
-  <div class="ctf-stat"><span class="num">4</span><span class="label">Competitions</span></div>
-  <div class="ctf-stat"><span class="num">19</span><span class="label">Writeups</span></div>
+  <div class="ctf-stat"><span class="num">5</span><span class="label">Competitions</span></div>
+  <div class="ctf-stat"><span class="num">20</span><span class="label">Writeups</span></div>
   <div class="ctf-stat"><span class="num">6</span><span class="label">Categories</span></div>
   <div class="ctf-stat"><span class="num">1st</span><span class="label">Best Finish</span></div>
 </div>
@@ -34,6 +34,14 @@ hide:
 ## Competitions
 
 <div class="grid cards" markdown>
+
+-   :material-skull-crossbones:{ .lg .middle } &nbsp; **HTB Cyber Apocalypse 2026**
+
+    ---
+
+    Hack The Box's flagship event — team finished **341st** with **40,500 points** (78/136 flags). Secure-coding, GamePwn, ML, and LLM prompt-injection.
+
+    [:octicons-arrow-right-24: Browse writeups](2026/htb-cyber-apocalypse/README.md)
 
 -   :material-shield-bug:{ .lg .middle } &nbsp; **BSides Vilnius 2026**
 
@@ -79,11 +87,11 @@ hide:
 
     SQLi, XSS, SSRF, CSP & Trusted-Types bypass, CRLF injection, prototype pollution, CSS exfiltration, cloud/IAM abuse.
 
--   :material-memory:{ .lg .middle } &nbsp; **Binary Exploitation**
+-   :material-memory:{ .lg .middle } &nbsp; **Binary Exploitation (Pwn)**
 
     ---
 
-    Buffer overflows, ROP chains, function-pointer hijacking, libc leaks, and container escapes.
+    Buffer overflows, ROP chains, function-pointer hijacking, libc leaks, container escapes, and GamePwn — live memory patching of a running game's native state machine.
 
 -   :material-lock:{ .lg .middle } &nbsp; **Cryptography**
 
