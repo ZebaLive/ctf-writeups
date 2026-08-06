@@ -24,7 +24,7 @@ hide:
 
 <div class="ctf-stats">
   <div class="ctf-stat"><span class="num">5</span><span class="label">Competitions</span></div>
-  <div class="ctf-stat"><span class="num">20</span><span class="label">Writeups</span></div>
+  <div class="ctf-stat"><span class="num">21</span><span class="label">Writeups</span></div>
   <div class="ctf-stat"><span class="num">6</span><span class="label">Categories</span></div>
   <div class="ctf-stat"><span class="num">1st</span><span class="label">Best Finish</span></div>
 </div>
@@ -39,7 +39,7 @@ hide:
 
     ---
 
-    Hack The Box's flagship event — team finished **341st** with **40,500 points** (78/136 flags). Secure-coding, GamePwn, ML, and LLM prompt-injection.
+    *Cyber Apocalypse CTF 2026: The Salt Crown* — Hack The Box's flagship event. Team finished **341st** with **40,500 points** (78/136 flags). Secure-coding, GamePwn, ML, and LLM prompt-injection.
 
     [:octicons-arrow-right-24: Browse writeups](2026/htb-cyber-apocalypse/README.md)
 

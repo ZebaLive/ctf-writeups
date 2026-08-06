@@ -1,7 +1,7 @@
 ---
-title: "The Salt Crown - HTB Cyber Apocalypse 2026 GamePwn Writeup"
-description: "HTB Cyber Apocalypse 2026 The Salt Crown writeup. Reverse a Godot game's native GDExtension state machine, patch the live Wine process from its parent, and make the game render the flag itself."
-ctf: "HTB Cyber Apocalypse 2026"
+title: "The Salt Crown - Cyber Apocalypse CTF 2026 GamePwn Writeup"
+description: "Cyber Apocalypse CTF 2026 The Salt Crown writeup. Reverse a Godot game's native GDExtension state machine, patch the live Wine process from its parent, and make the game render the flag itself."
+ctf: "Cyber Apocalypse CTF 2026: The Salt Crown"
 date: 2026-07-29
 category: gamepwn
 difficulty: hard
@@ -9,7 +9,6 @@ flag_format: "HTB{...}"
 author: "zeba"
 tags:
   - HTB Cyber Apocalypse 2026
-  - Pwn
   - GamePwn
   - Hard
   - Godot
