@@ -24,7 +24,7 @@ hide:
 
 <div class="ctf-stats">
   <div class="ctf-stat"><span class="num">5</span><span class="label">Competitions</span></div>
-  <div class="ctf-stat"><span class="num">21</span><span class="label">Writeups</span></div>
+  <div class="ctf-stat"><span class="num">23</span><span class="label">Writeups</span></div>
   <div class="ctf-stat"><span class="num">6</span><span class="label">Categories</span></div>
   <div class="ctf-stat"><span class="num">1st</span><span class="label">Best Finish</span></div>
 </div>
