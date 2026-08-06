@@ -1,0 +1,15 @@
+{
+  "challenge": "Forked Tongue",
+  "files": {
+    "model.pt": "TinyGPT weights + config (load with model.py)",
+    "model.py": "decoder-only transformer definition, greedy decoding",
+    "tokenizer.json": "byte-level BPE tokenizer (HuggingFace format)",
+    "prompts.json": "captured petition token-ID sequences"
+  },
+  "tokenizer": {
+    "type": "byte-level BPE (HuggingFace tokenizer.json)",
+    "decoding": "token strings are byte-level (GPT-2) text. Map the characters back to bytes, then UTF-8 decode",
+    "id_convention": "ids 0..255 are the single-byte alphabet, ids 256.. are one token per entry in 'merges' (in order), and added_tokens hold the special chat tokens at the highest ids"
+  },
+  "recovery": "flag = cipher XOR shake_256(pad).digest(len(cipher))"
+}
