@@ -263,7 +263,7 @@ The challenge title was a perfect hint: "C supports function pointers" → The f
 
 ## Solution Script
 
-[exploit.py](exploit.py)
+[exploit.py](solve/exploit.py)
 
 ## Flag
 

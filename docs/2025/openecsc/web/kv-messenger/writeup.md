@@ -169,7 +169,7 @@ bot_url = f"http://localhost:8000/download?uuid={html_uuid}&view=True"
 requests.post(f"{TARGET}/report", json={"url": bot_url})
 ```
 
-Full exploit: [exploit.py](exploit.py)
+Full exploit: [exploit.py](solve/exploit.py)
 
 ## Flag
 
