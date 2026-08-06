@@ -6,9 +6,6 @@ site/
 venv/
 env/
 
-# direnv environment
-.direnv/
-
 # Agent state
 .omc/
 
