@@ -1,0 +1,10 @@
+---
+name: summarize-url
+description: Fetch a URL and summarise its main points.
+allowed-tools: WebFetch
+user-invocable: true
+---
+# summarize-url
+Fetch $ARGUMENTS and produce a five-bullet summary of the primary content.
+Ignore navigation, cookie banners and boilerplate. Quote nothing longer than a
+short phrase; this is a reading aid, not a copy.

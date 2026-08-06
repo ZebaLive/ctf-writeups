@@ -9,12 +9,13 @@ It contains **detailed writeups, exploit scripts, and technical notes** document
 
 ## 2025 Competitions
 
-| Competition             | Rank         | Challenges       | Points                | Links                                                 |
-| ----------------------- | ------------ | ---------------- | --------------------- | ----------------------------------------------------- |
-| **ECSC 2025**           | 30th         | 11 (4 personal)  | 1459                  | [Writeups](https://ctf.zeba.dev/2025/ecsc/)           |
-| **Mārtiņa-CTF 2025**    | 1st (Remote) | 44 (12 personal) | 15213 (4751 personal) | [Writeups](https://ctf.zeba.dev/2025/martina-ctf/)    |
-| **openECSC 2025**       | 14th         | 21               | 3923                  | [Writeups](https://ctf.zeba.dev/2025/openecsc/)       |
-| **BSides Vilnius 2026** | 4th          | 25               | 3050                  | [Writeups](https://ctf.zeba.dev/2025/bsides-vilnius/) |
+| Competition                   | Rank         | Challenges       | Points                | Links                                                       |
+| ----------------------------- | ------------ | ---------------- | --------------------- | ----------------------------------------------------------- |
+| **ECSC 2025**                 | 30th         | 11 (4 personal)  | 1459                  | [Writeups](https://ctf.zeba.dev/2025/ecsc/)                 |
+| **Mārtiņa-CTF 2025**          | 1st (Remote) | 44 (12 personal) | 15213 (4751 personal) | [Writeups](https://ctf.zeba.dev/2025/martina-ctf/)          |
+| **openECSC 2025**             | 14th         | 21               | 3923                  | [Writeups](https://ctf.zeba.dev/2025/openecsc/)             |
+| **BSides Vilnius 2026**       | 4th          | 25               | 3050                  | [Writeups](https://ctf.zeba.dev/2025/bsides-vilnius/)       |
+| **HTB Cyber Apocalypse 2026** | 341st (team) | 78/136 (team)    | 40500 (team)          | [Writeups](https://ctf.zeba.dev/2026/htb-cyber-apocalypse/) |
 
 ---
 

@@ -17,7 +17,7 @@ tags:
 
 ## Solution Overview
 
-The provided [`calamansi.png`](./calamansi.png) appears to be a simple flat calamansi-yellow square, but it's actually an APNG (animated PNG) with 50 hidden frames. Each frame contains letter-shaped differences in the RGB channels that are invisible due to transparent alpha channels. By parsing the PNG chunk structure, extracting and decompressing each frame's raw pixel data, converting non-background pixels to white, and concatenating the resulting character images, the complete flag is revealed as a horizontal strip.
+The provided [`calamansi.png`](./challenge/calamansi.png) appears to be a simple flat calamansi-yellow square, but it's actually an APNG (animated PNG) with 50 hidden frames. Each frame contains letter-shaped differences in the RGB channels that are invisible due to transparent alpha channels. By parsing the PNG chunk structure, extracting and decompressing each frame's raw pixel data, converting non-background pixels to white, and concatenating the resulting character images, the complete flag is revealed as a horizontal strip.
 
 ## Tools Used
 
@@ -195,7 +195,7 @@ def stitch_frames():
 
 Opening `flag.png` revealed the complete flag as a horizontal strip of 50 characters!
 
-![flag](./flag.png)
+![flag](./images/flag.png)
 
 ## Solution Scripts
 

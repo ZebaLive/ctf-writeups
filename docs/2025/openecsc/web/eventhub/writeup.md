@@ -160,7 +160,7 @@ Decoding: `admin=openECSC{i_hate_browser_differentials_🤮_202c574bc2f5}`
 
 ## Solution Script
 
-[exploit.py](exploit.py)
+[exploit.py](solve/exploit.py)
 
 ## Flag
 

@@ -9,6 +9,9 @@ env/
 # direnv environment
 .direnv/
 
+# Agent state
+.omc/
+
 # Python cache
 __pycache__/
 *.py[cod]
