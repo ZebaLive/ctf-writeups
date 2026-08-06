@@ -117,6 +117,7 @@ nav:
       - 2026/htb-cyber-apocalypse/README.md
       - AI - ML:
           - The Obligation Indexer: 2026/htb-cyber-apocalypse/ai-ml/obligation-indexer/writeup.md
+          - Memento: 2026/htb-cyber-apocalypse/ai-ml/memento/writeup.md
       - GamePwn:
           - The Salt Crown: 2026/htb-cyber-apocalypse/gamepwn/the-salt-crown/writeup.md
   - BSides Vilnius 2026:

@@ -1,0 +1,10 @@
+---
+name: format-json
+description: Pretty-print and validate a JSON file.
+allowed-tools: Read
+user-invocable: true
+---
+# format-json
+Read the given JSON file, validate that it parses, and print it indented by two
+spaces. If parsing fails, report the first syntax error with its line and column
+so the clerk can correct the source by hand.

@@ -1,0 +1,10 @@
+---
+name: word-count
+description: Count lines, words and characters in a text file.
+allowed-tools: Read
+user-invocable: true
+---
+# word-count
+Read the given file and report its line, word and character counts. Used to
+check that a recopied leaf has not grown or shrunk unexpectedly against the
+certified original.
